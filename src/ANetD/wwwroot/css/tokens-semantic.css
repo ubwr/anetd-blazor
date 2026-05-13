@@ -1,0 +1,95 @@
+/* ANetD Semantic Tokens — Layer 2
+   Give meaning to primitives. Override these to create custom themes.
+   These tokens apply in the light theme (default). */
+
+:root,
+[data-theme="light"] {
+  /* ─── Surface / Background ───────────────────────────── */
+  --anetd-color-bg-base:         var(--anetd-primitive-gray-0);
+  --anetd-color-bg-subtle:       var(--anetd-primitive-gray-50);
+  --anetd-color-bg-muted:        var(--anetd-primitive-gray-100);
+  --anetd-color-bg-emphasis:     var(--anetd-primitive-gray-200);
+  --anetd-color-bg-inverse:      var(--anetd-primitive-gray-900);
+  --anetd-color-bg-overlay:      var(--anetd-primitive-gray-0);
+
+  /* ─── Text ───────────────────────────────────────────── */
+  --anetd-color-text-primary:    var(--anetd-primitive-gray-900);
+  --anetd-color-text-secondary:  var(--anetd-primitive-gray-600);
+  --anetd-color-text-tertiary:   var(--anetd-primitive-gray-400);
+  --anetd-color-text-disabled:   var(--anetd-primitive-gray-300);
+  --anetd-color-text-inverse:    var(--anetd-primitive-gray-0);
+  --anetd-color-text-link:       var(--anetd-primitive-brand-600);
+  --anetd-color-text-link-hover: var(--anetd-primitive-brand-700);
+  --anetd-color-text-on-brand:   var(--anetd-primitive-gray-0);
+
+  /* ─── Brand ──────────────────────────────────────────── */
+  --anetd-color-brand-subtle:    var(--anetd-primitive-brand-50);
+  --anetd-color-brand-muted:     var(--anetd-primitive-brand-100);
+  --anetd-color-brand-default:   var(--anetd-primitive-brand-600);
+  --anetd-color-brand-hover:     var(--anetd-primitive-brand-500);
+  --anetd-color-brand-active:    var(--anetd-primitive-brand-700);
+  --anetd-color-brand-border:    var(--anetd-primitive-brand-300);
+
+  /* ─── Borders ────────────────────────────────────────── */
+  --anetd-color-border-subtle:   var(--anetd-primitive-gray-100);
+  --anetd-color-border-default:  var(--anetd-primitive-gray-200);
+  --anetd-color-border-strong:   var(--anetd-primitive-gray-300);
+  --anetd-color-border-focus:    var(--anetd-primitive-brand-600);
+
+  /* ─── Status: Danger ─────────────────────────────────── */
+  --anetd-color-danger-subtle:   var(--anetd-primitive-red-50);
+  --anetd-color-danger-muted:    var(--anetd-primitive-red-100);
+  --anetd-color-danger-default:  var(--anetd-primitive-red-600);
+  --anetd-color-danger-hover:    var(--anetd-primitive-red-700);
+  --anetd-color-danger-active:   var(--anetd-primitive-red-800);
+  --anetd-color-danger-border:   var(--anetd-primitive-red-300);
+  --anetd-color-danger-text:     var(--anetd-primitive-red-700);
+
+  /* ─── Status: Warning ────────────────────────────────── */
+  --anetd-color-warning-subtle:  var(--anetd-primitive-yellow-50);
+  --anetd-color-warning-muted:   var(--anetd-primitive-yellow-100);
+  --anetd-color-warning-default: var(--anetd-primitive-yellow-500);
+  --anetd-color-warning-hover:   var(--anetd-primitive-yellow-600);
+  --anetd-color-warning-border:  var(--anetd-primitive-yellow-300);
+  --anetd-color-warning-text:    var(--anetd-primitive-yellow-700);
+
+  /* ─── Status: Success ────────────────────────────────── */
+  --anetd-color-success-subtle:  var(--anetd-primitive-green-50);
+  --anetd-color-success-muted:   var(--anetd-primitive-green-100);
+  --anetd-color-success-default: var(--anetd-primitive-green-600);
+  --anetd-color-success-hover:   var(--anetd-primitive-green-700);
+  --anetd-color-success-border:  var(--anetd-primitive-green-300);
+  --anetd-color-success-text:    var(--anetd-primitive-green-700);
+
+  /* ─── Status: Info ───────────────────────────────────── */
+  --anetd-color-info-subtle:     var(--anetd-primitive-blue-50);
+  --anetd-color-info-muted:      var(--anetd-primitive-blue-100);
+  --anetd-color-info-default:    var(--anetd-primitive-blue-600);
+  --anetd-color-info-hover:      var(--anetd-primitive-blue-700);
+  --anetd-color-info-border:     var(--anetd-primitive-blue-300);
+  --anetd-color-info-text:       var(--anetd-primitive-blue-700);
+
+  /* ─── Interactive states ─────────────────────────────── */
+  --anetd-color-hover-overlay:   rgb(0 0 0 / 0.04);
+  --anetd-color-active-overlay:  rgb(0 0 0 / 0.08);
+  --anetd-color-focus-ring:      var(--anetd-primitive-brand-600);
+
+  /* ─── Typography semantic ────────────────────────────── */
+  --anetd-font-family:       var(--anetd-primitive-font-family-sans);
+  --anetd-font-family-mono:  var(--anetd-primitive-font-family-mono);
+  --anetd-font-size-base:    var(--anetd-primitive-font-size-base);
+  --anetd-line-height-base:  var(--anetd-primitive-line-height-normal);
+
+  /* ─── Sizing semantic ────────────────────────────────── */
+  --anetd-height-input:      2.25rem;  /* 36px — enterprise density */
+  --anetd-height-input-sm:   1.75rem;  /* 28px */
+  --anetd-height-input-lg:   2.75rem;  /* 44px */
+
+  /* ─── Overlay / backdrop ─────────────────────────────── */
+  --anetd-color-backdrop: rgb(0 0 0 / 0.45);
+
+  /* ─── Scrollbar ──────────────────────────────────────── */
+  --anetd-scrollbar-width:  6px;
+  --anetd-scrollbar-thumb:  var(--anetd-primitive-gray-300);
+  --anetd-scrollbar-track:  transparent;
+}

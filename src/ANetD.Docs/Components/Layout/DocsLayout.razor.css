@@ -1,0 +1,14 @@
+.docs-shell { display: flex; flex-direction: column; min-height: 100vh; }
+.docs-body { display: flex; flex: 1; height: calc(100vh - var(--anetd-navbar-height)); overflow: hidden; }
+.docs-main { flex: 1; overflow-y: auto; }
+.docs-content { max-width: 56rem; margin: 0 auto; padding: var(--anetd-primitive-space-8) var(--anetd-primitive-space-6); }
+
+.docs-brand { display: flex; align-items: center; gap: var(--anetd-primitive-space-2); text-decoration: none; color: var(--anetd-color-text-primary); }
+.docs-brand__logo { display: flex; align-items: center; justify-content: center; width: 1.75rem; height: 1.75rem; background: var(--anetd-color-brand-default); color: white; border-radius: var(--anetd-primitive-radius-md); font-weight: var(--anetd-primitive-font-weight-bold); font-size: var(--anetd-primitive-font-size-md); }
+.docs-brand__name { font-weight: var(--anetd-primitive-font-weight-bold); font-size: var(--anetd-primitive-font-size-lg); }
+
+.docs-theme-toggle, .docs-github-link { display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border: none; background: transparent; color: var(--anetd-color-text-secondary); border-radius: var(--anetd-primitive-radius-md); cursor: pointer; text-decoration: none; transition: background var(--anetd-primitive-duration-base), color var(--anetd-primitive-duration-base); }
+.docs-theme-toggle:hover, .docs-github-link:hover { background: var(--anetd-color-hover-overlay); color: var(--anetd-color-text-primary); }
+
+.docs-sidebar-title { font-size: var(--anetd-primitive-font-size-sm); font-weight: var(--anetd-primitive-font-weight-semibold); color: var(--anetd-color-text-primary); }
+.docs-sidebar-section { padding: var(--anetd-primitive-space-3) var(--anetd-primitive-space-3) var(--anetd-primitive-space-1); font-size: var(--anetd-primitive-font-size-xs); font-weight: var(--anetd-primitive-font-weight-semibold); color: var(--anetd-color-text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; }

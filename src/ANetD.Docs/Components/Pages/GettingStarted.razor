@@ -1,0 +1,42 @@
+@page "/docs/getting-started"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Getting Started — ANetD</PageTitle>
+
+<ANetdText As="h1">Getting Started</ANetdText>
+<ANetdText As="p">
+    ANetD is a Blazor component library targeting .NET 8+. Add it to your project in minutes.
+</ANetdText>
+
+<ANetdText As="h2">Installation</ANetdText>
+<ANetdText As="p">Install from NuGet:</ANetdText>
+<ANetdCard NoPadding="true">
+    <ChildContent>
+        <pre class="docs-code"><code>dotnet add package ANetD --version 0.1.0-preview</code></pre>
+    </ChildContent>
+</ANetdCard>
+
+<ANetdText As="h2">Setup</ANetdText>
+<ANetdText As="p">Add the stylesheet to your <code>App.razor</code>:</ANetdText>
+<ANetdCard NoPadding="true">
+    <ChildContent>
+        <pre class="docs-code"><code>@("<link rel=\"stylesheet\" href=\"_content/ANetD/anetd.css\" />")</code></pre>
+    </ChildContent>
+</ANetdCard>
+
+<ANetdText As="p" Style="margin-top: 1rem">Register services in <code>Program.cs</code>:</ANetdText>
+<ANetdCard NoPadding="true">
+    <ChildContent>
+        <pre class="docs-code"><code>builder.Services.AddANetD();</code></pre>
+    </ChildContent>
+</ANetdCard>
+
+<ANetdText As="h2">Your first component</ANetdText>
+<ANetdCard NoPadding="true">
+    <ChildContent>
+        <pre class="docs-code"><code>@("<ANetdButton Variant=\"ButtonVariant.Primary\">Click me</ANetdButton>")</code></pre>
+    </ChildContent>
+</ANetdCard>
+<div style="padding: 1.5rem; border-top: 1px solid var(--anetd-color-border-default);">
+    <ANetdButton Variant="ButtonVariant.Primary">Click me</ANetdButton>
+</div>

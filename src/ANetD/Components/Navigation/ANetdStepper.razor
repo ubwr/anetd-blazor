@@ -1,0 +1,56 @@
+@namespace ANetD.Components.Navigation
+
+<div class="@CssClass" @attributes="AdditionalAttributes">
+    @foreach (var (step, index) in Steps.Select((s, i) => (s, i)))
+    {
+        var stepNumber = index + 1;
+        var isCompleted = stepNumber < ActiveStep;
+        var isActive = stepNumber == ActiveStep;
+        <div class="@GetStepClass(isCompleted, isActive)">
+            <div class="anetd-stepper__indicator">
+                @if (isCompleted)
+                {
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path d="M2 7L5.5 10.5L12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                }
+                else
+                {
+                    <span>@stepNumber</span>
+                }
+            </div>
+            <div class="anetd-stepper__content">
+                <div class="anetd-stepper__title">@step.Title</div>
+                @if (!string.IsNullOrEmpty(step.Description))
+                {
+                    <div class="anetd-stepper__desc">@step.Description</div>
+                }
+            </div>
+            @if (index < Steps.Count - 1)
+            {
+                <div class="anetd-stepper__connector" aria-hidden="true"></div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    public record StepItem(string Title, string? Description = null);
+
+    [Parameter] public List<StepItem> Steps { get; set; } = new();
+    [Parameter] public int ActiveStep { get; set; } = 1;
+    [Parameter] public bool Vertical { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-stepper")
+        .AddIf("anetd-stepper--vertical", Vertical)
+        .Add(Class).Build();
+
+    private string GetStepClass(bool completed, bool active) => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-stepper__step")
+        .AddIf("anetd-stepper__step--completed", completed)
+        .AddIf("anetd-stepper__step--active", active)
+        .Build();
+}

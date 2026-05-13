@@ -1,0 +1,13 @@
+.anetd-divider {
+    border: none;
+    border-top: var(--anetd-divider-thickness) solid var(--anetd-divider-color);
+    margin: 0;
+    width: 100%;
+}
+.anetd-divider--vertical {
+    border-top: none;
+    border-left: var(--anetd-divider-thickness) solid var(--anetd-divider-color);
+    width: var(--anetd-divider-thickness);
+    height: 100%;
+    align-self: stretch;
+}

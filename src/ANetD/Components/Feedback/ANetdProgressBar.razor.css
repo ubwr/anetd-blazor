@@ -1,0 +1,9 @@
+.anetd-progress { width: 100%; height: var(--anetd-progress-height); background: var(--anetd-progress-bg); border-radius: var(--anetd-progress-radius); overflow: hidden; }
+.anetd-progress--sm { height: var(--anetd-progress-height-sm); }
+.anetd-progress--lg { height: var(--anetd-progress-height-lg); }
+.anetd-progress__fill { height: 100%; background: var(--anetd-progress-fill); border-radius: var(--anetd-progress-radius); transition: width var(--anetd-primitive-duration-slower) var(--anetd-primitive-ease-out); }
+.anetd-progress--success .anetd-progress__fill { background: var(--anetd-color-success-default); }
+.anetd-progress--warning .anetd-progress__fill { background: var(--anetd-color-warning-default); }
+.anetd-progress--danger  .anetd-progress__fill { background: var(--anetd-color-danger-default); }
+.anetd-progress__fill--indeterminate { width: 40%; animation: anetd-progress-indeterminate 1.4s ease-in-out infinite; }
+@keyframes anetd-progress-indeterminate { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }

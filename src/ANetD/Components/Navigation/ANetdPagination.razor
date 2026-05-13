@@ -1,0 +1,70 @@
+@namespace ANetD.Components.Navigation
+
+<nav aria-label="Pagination" class="@CssClass" @attributes="AdditionalAttributes">
+    <button type="button" class="anetd-pagination__btn"
+            disabled="@(CurrentPage <= 1)" aria-label="Previous page"
+            @onclick="() => GoToPage(CurrentPage - 1)">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    @foreach (var page in GetPageNumbers())
+    {
+        @if (page == -1)
+        {
+            <span class="anetd-pagination__ellipsis">…</span>
+        }
+        else
+        {
+            <button type="button" class="@GetPageClass(page)"
+                    aria-label="@($"Page {page}")"
+                    aria-current="@(page == CurrentPage ? "page" : null)"
+                    @onclick="() => GoToPage(page)">@page</button>
+        }
+    }
+
+    <button type="button" class="anetd-pagination__btn"
+            disabled="@(CurrentPage >= TotalPages)" aria-label="Next page"
+            @onclick="() => GoToPage(CurrentPage + 1)">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+</nav>
+
+@code {
+    [Parameter] public int CurrentPage { get; set; } = 1;
+    [Parameter] public int TotalPages { get; set; } = 1;
+    [Parameter] public EventCallback<int> CurrentPageChanged { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder().Add("anetd-pagination").Add(Class).Build();
+
+    private string GetPageClass(int page) => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-pagination__btn")
+        .AddIf("anetd-pagination__btn--active", page == CurrentPage)
+        .Build();
+
+    private async Task GoToPage(int page)
+    {
+        if (page >= 1 && page <= TotalPages && page != CurrentPage)
+            await CurrentPageChanged.InvokeAsync(page);
+    }
+
+    private IEnumerable<int> GetPageNumbers()
+    {
+        const int delta = 2;
+        var pages = new List<int>();
+        if (TotalPages <= 7) { for (int i = 1; i <= TotalPages; i++) pages.Add(i); return pages; }
+        var left = Math.Max(2, CurrentPage - delta);
+        var right = Math.Min(TotalPages - 1, CurrentPage + delta);
+        pages.Add(1);
+        if (left > 2) pages.Add(-1);
+        for (int i = left; i <= right; i++) pages.Add(i);
+        if (right < TotalPages - 1) pages.Add(-1);
+        pages.Add(TotalPages);
+        return pages;
+    }
+}

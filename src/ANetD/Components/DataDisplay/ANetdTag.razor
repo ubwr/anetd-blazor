@@ -1,0 +1,32 @@
+@namespace ANetD.Components.DataDisplay
+
+<span class="@CssClass" @attributes="AdditionalAttributes">
+    @if (Icon is not null)
+    {
+        <span class="anetd-tag__icon" aria-hidden="true">@Icon</span>
+    }
+    @ChildContent
+    @if (Removable)
+    {
+        <button type="button" class="anetd-tag__remove" aria-label="Remove" @onclick="() => OnRemove.InvokeAsync()">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M7.5 2.5L2.5 7.5M2.5 2.5L7.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+    }
+</span>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? Icon { get; set; }
+    [Parameter] public ComponentColor Color { get; set; } = ComponentColor.Default;
+    [Parameter] public bool Removable { get; set; }
+    [Parameter] public EventCallback OnRemove { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-tag")
+        .Add(Color switch { ComponentColor.Primary => "anetd-tag--primary", ComponentColor.Success => "anetd-tag--success", ComponentColor.Warning => "anetd-tag--warning", ComponentColor.Danger => "anetd-tag--danger", ComponentColor.Info => "anetd-tag--info", _ => "anetd-tag--default" })
+        .Add(Class).Build();
+}

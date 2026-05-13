@@ -1,0 +1,173 @@
+/* ANetD Primitive Tokens — Layer 1
+   Raw values only. Never reference these directly in component styles.
+   Use semantic tokens instead. */
+
+:root {
+  /* ─── Gray Scale ─────────────────────────────────────── */
+  --anetd-primitive-gray-0:   #ffffff;
+  --anetd-primitive-gray-50:  #f9fafb;
+  --anetd-primitive-gray-100: #f3f4f6;
+  --anetd-primitive-gray-150: #eceef1;
+  --anetd-primitive-gray-200: #e5e7eb;
+  --anetd-primitive-gray-300: #d1d5db;
+  --anetd-primitive-gray-400: #9ca3af;
+  --anetd-primitive-gray-500: #6b7280;
+  --anetd-primitive-gray-600: #4b5563;
+  --anetd-primitive-gray-700: #374151;
+  --anetd-primitive-gray-800: #1f2937;
+  --anetd-primitive-gray-900: #111827;
+  --anetd-primitive-gray-950: #030712;
+
+  /* ─── Brand Purple Scale ─────────────────────────────── */
+  --anetd-primitive-brand-50:  #f5f0ff;
+  --anetd-primitive-brand-100: #ede5ff;
+  --anetd-primitive-brand-200: #d9c9ff;
+  --anetd-primitive-brand-300: #c0a3ff;
+  --anetd-primitive-brand-400: #a274ff;
+  --anetd-primitive-brand-500: #7c1fee;
+  --anetd-primitive-brand-600: #5c01e5;
+  --anetd-primitive-brand-700: #4900b8;
+  --anetd-primitive-brand-800: #3a0093;
+  --anetd-primitive-brand-900: #2b0070;
+  --anetd-primitive-brand-950: #1a004d;
+
+  /* ─── Red / Danger Scale ─────────────────────────────── */
+  --anetd-primitive-red-50:  #fef2f2;
+  --anetd-primitive-red-100: #fee2e2;
+  --anetd-primitive-red-200: #fecaca;
+  --anetd-primitive-red-300: #fca5a5;
+  --anetd-primitive-red-400: #f87171;
+  --anetd-primitive-red-500: #ef4444;
+  --anetd-primitive-red-600: #dc2626;
+  --anetd-primitive-red-700: #b91c1c;
+  --anetd-primitive-red-800: #991b1b;
+  --anetd-primitive-red-900: #7f1d1d;
+
+  /* ─── Yellow / Warning Scale ─────────────────────────── */
+  --anetd-primitive-yellow-50:  #fffbeb;
+  --anetd-primitive-yellow-100: #fef3c7;
+  --anetd-primitive-yellow-200: #fde68a;
+  --anetd-primitive-yellow-300: #fcd34d;
+  --anetd-primitive-yellow-400: #fbbf24;
+  --anetd-primitive-yellow-500: #f59e0b;
+  --anetd-primitive-yellow-600: #d97706;
+  --anetd-primitive-yellow-700: #b45309;
+  --anetd-primitive-yellow-800: #92400e;
+
+  /* ─── Green / Success Scale ──────────────────────────── */
+  --anetd-primitive-green-50:  #f0fdf4;
+  --anetd-primitive-green-100: #dcfce7;
+  --anetd-primitive-green-200: #bbf7d0;
+  --anetd-primitive-green-300: #86efac;
+  --anetd-primitive-green-400: #4ade80;
+  --anetd-primitive-green-500: #22c55e;
+  --anetd-primitive-green-600: #16a34a;
+  --anetd-primitive-green-700: #15803d;
+  --anetd-primitive-green-800: #166534;
+
+  /* ─── Blue / Info Scale ──────────────────────────────── */
+  --anetd-primitive-blue-50:  #eff6ff;
+  --anetd-primitive-blue-100: #dbeafe;
+  --anetd-primitive-blue-200: #bfdbfe;
+  --anetd-primitive-blue-300: #93c5fd;
+  --anetd-primitive-blue-400: #60a5fa;
+  --anetd-primitive-blue-500: #3b82f6;
+  --anetd-primitive-blue-600: #2563eb;
+  --anetd-primitive-blue-700: #1d4ed8;
+  --anetd-primitive-blue-800: #1e40af;
+
+  /* ─── Typography ─────────────────────────────────────── */
+  --anetd-primitive-font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --anetd-primitive-font-family-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, monospace;
+
+  --anetd-primitive-font-size-xs:   0.75rem;   /* 10.5px */
+  --anetd-primitive-font-size-sm:   0.8125rem; /* 11.375px */
+  --anetd-primitive-font-size-base: 0.875rem;  /* 12.25px (~14px enterprise default) */
+  --anetd-primitive-font-size-md:   0.9375rem; /* 13.125px */
+  --anetd-primitive-font-size-lg:   1rem;      /* 14px */
+  --anetd-primitive-font-size-xl:   1.125rem;  /* 15.75px */
+  --anetd-primitive-font-size-2xl:  1.25rem;   /* 17.5px */
+  --anetd-primitive-font-size-3xl:  1.5rem;    /* 21px */
+  --anetd-primitive-font-size-4xl:  1.875rem;  /* 26.25px */
+  --anetd-primitive-font-size-5xl:  2.25rem;   /* 31.5px */
+
+  --anetd-primitive-font-weight-regular:   400;
+  --anetd-primitive-font-weight-medium:    500;
+  --anetd-primitive-font-weight-semibold:  600;
+  --anetd-primitive-font-weight-bold:      700;
+
+  --anetd-primitive-line-height-tight:  1.25;
+  --anetd-primitive-line-height-snug:   1.375;
+  --anetd-primitive-line-height-normal: 1.5;
+  --anetd-primitive-line-height-relaxed: 1.625;
+
+  /* ─── Spacing ─────────────────────────────────────────── */
+  --anetd-primitive-space-0:    0;
+  --anetd-primitive-space-px:   1px;
+  --anetd-primitive-space-0-5:  0.125rem;  /* 2px */
+  --anetd-primitive-space-1:    0.25rem;   /* 4px */
+  --anetd-primitive-space-1-5:  0.375rem;  /* 6px */
+  --anetd-primitive-space-2:    0.5rem;    /* 8px */
+  --anetd-primitive-space-2-5:  0.625rem;  /* 10px */
+  --anetd-primitive-space-3:    0.75rem;   /* 12px */
+  --anetd-primitive-space-3-5:  0.875rem;  /* 14px */
+  --anetd-primitive-space-4:    1rem;      /* 16px */
+  --anetd-primitive-space-5:    1.25rem;   /* 20px */
+  --anetd-primitive-space-6:    1.5rem;    /* 24px */
+  --anetd-primitive-space-7:    1.75rem;   /* 28px */
+  --anetd-primitive-space-8:    2rem;      /* 32px */
+  --anetd-primitive-space-10:   2.5rem;    /* 40px */
+  --anetd-primitive-space-12:   3rem;      /* 48px */
+  --anetd-primitive-space-16:   4rem;      /* 64px */
+  --anetd-primitive-space-20:   5rem;      /* 80px */
+  --anetd-primitive-space-24:   6rem;      /* 96px */
+
+  /* ─── Border Radius ──────────────────────────────────── */
+  --anetd-primitive-radius-none: 0;
+  --anetd-primitive-radius-sm:   0.1875rem; /* 3px */
+  --anetd-primitive-radius-md:   0.25rem;   /* 4px */
+  --anetd-primitive-radius-lg:   0.375rem;  /* 6px */
+  --anetd-primitive-radius-xl:   0.5rem;    /* 8px */
+  --anetd-primitive-radius-2xl:  0.75rem;   /* 12px */
+  --anetd-primitive-radius-full: 9999px;
+
+  /* ─── Shadows ────────────────────────────────────────── */
+  --anetd-primitive-shadow-xs:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --anetd-primitive-shadow-sm:  0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --anetd-primitive-shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --anetd-primitive-shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --anetd-primitive-shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --anetd-primitive-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --anetd-primitive-shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  /* ─── Z-index scale ──────────────────────────────────── */
+  --anetd-primitive-z-0:       0;
+  --anetd-primitive-z-10:      10;
+  --anetd-primitive-z-20:      20;
+  --anetd-primitive-z-30:      30;
+  --anetd-primitive-z-dropdown: 1000;
+  --anetd-primitive-z-sticky:   1020;
+  --anetd-primitive-z-fixed:    1030;
+  --anetd-primitive-z-backdrop: 1040;
+  --anetd-primitive-z-modal:    1050;
+  --anetd-primitive-z-popover:  1060;
+  --anetd-primitive-z-tooltip:  1070;
+  --anetd-primitive-z-toast:    1080;
+
+  /* ─── Transitions ─────────────────────────────────────── */
+  --anetd-primitive-duration-fast:   100ms;
+  --anetd-primitive-duration-base:   150ms;
+  --anetd-primitive-duration-slow:   200ms;
+  --anetd-primitive-duration-slower: 300ms;
+  --anetd-primitive-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --anetd-primitive-ease-in:      cubic-bezier(0.4, 0, 1, 1);
+  --anetd-primitive-ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --anetd-primitive-ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ─── Breakpoints (as reference only, use media queries) */
+  --anetd-primitive-screen-sm:  576px;
+  --anetd-primitive-screen-md:  768px;
+  --anetd-primitive-screen-lg:  1024px;
+  --anetd-primitive-screen-xl:  1280px;
+  --anetd-primitive-screen-2xl: 1536px;
+}

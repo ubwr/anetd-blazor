@@ -1,0 +1,23 @@
+@namespace ANetD.Components.Navigation
+
+<li class="anetd-breadcrumb-item" @attributes="AdditionalAttributes">
+    @if (!string.IsNullOrEmpty(Href) && !Active)
+    {
+        <a href="@Href" class="anetd-breadcrumb-item__link">@ChildContent</a>
+    }
+    else
+    {
+        <span class="anetd-breadcrumb-item__current" aria-current="@(Active ? "page" : null)">@ChildContent</span>
+    }
+    @if (!Active)
+    {
+        <span class="anetd-breadcrumb-item__separator" aria-hidden="true">/</span>
+    }
+</li>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public bool Active { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+}

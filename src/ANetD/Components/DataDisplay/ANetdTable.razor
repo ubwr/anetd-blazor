@@ -1,0 +1,48 @@
+@namespace ANetD.Components.DataDisplay
+@typeparam TItem
+
+<div class="@WrapperClass">
+    <table class="@TableClass" @attributes="AdditionalAttributes">
+        <thead class="anetd-table__head">
+            <tr>@HeaderRow</tr>
+        </thead>
+        <tbody class="anetd-table__body">
+            @if (Items is not null)
+            {
+                @foreach (var item in Items)
+                {
+                    @RowTemplate(item)
+                }
+            }
+        </tbody>
+    </table>
+    @if (!(Items?.Any() ?? false))
+    {
+        <div class="anetd-table__empty">
+            @if (EmptyContent is not null) { @EmptyContent }
+            else { <span>No data to display.</span> }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public IEnumerable<TItem>? Items { get; set; }
+    [Parameter] public RenderFragment? HeaderRow { get; set; }
+    [Parameter] public RenderFragment<TItem>? RowTemplate { get; set; }
+    [Parameter] public RenderFragment? EmptyContent { get; set; }
+    [Parameter] public bool Striped { get; set; }
+    [Parameter] public bool Hoverable { get; set; } = true;
+    [Parameter] public bool Bordered { get; set; }
+    [Parameter] public bool Compact { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string WrapperClass => new ANetD.Utilities.CssBuilder().Add("anetd-table-wrapper").Add(Class).Build();
+    private string TableClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-table")
+        .AddIf("anetd-table--striped", Striped)
+        .AddIf("anetd-table--hoverable", Hoverable)
+        .AddIf("anetd-table--bordered", Bordered)
+        .AddIf("anetd-table--compact", Compact)
+        .Build();
+}

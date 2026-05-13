@@ -1,0 +1,27 @@
+## .NET artifacts
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.vscode/
+*.DotSettings.user
+TestResults/
+publish/
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+## OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## Logs
+*.log
+npm-debug.log*
+
+## Node (for docs tooling)
+node_modules/

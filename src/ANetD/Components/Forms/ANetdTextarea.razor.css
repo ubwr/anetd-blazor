@@ -1,0 +1,26 @@
+.anetd-textarea {
+    width: 100%;
+    min-height: 5rem;
+    padding: var(--anetd-primitive-space-2) var(--anetd-input-padding-x);
+    font-family: var(--anetd-font-family);
+    font-size: var(--anetd-input-font-size);
+    color: var(--anetd-input-text);
+    background: var(--anetd-input-bg);
+    border: 1px solid var(--anetd-input-border);
+    border-radius: var(--anetd-input-radius);
+    resize: vertical;
+    outline: none;
+    transition: border-color var(--anetd-primitive-duration-base) var(--anetd-primitive-ease-default),
+                box-shadow var(--anetd-primitive-duration-base) var(--anetd-primitive-ease-default);
+    line-height: var(--anetd-primitive-line-height-normal);
+}
+.anetd-textarea::placeholder { color: var(--anetd-input-placeholder); }
+.anetd-textarea:focus {
+    border-color: var(--anetd-input-border-focus);
+    box-shadow: var(--anetd-input-shadow-focus);
+}
+.anetd-textarea:disabled {
+    background: var(--anetd-input-bg-disabled);
+    cursor: not-allowed;
+    opacity: 0.7;
+}

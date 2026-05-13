@@ -1,0 +1,6 @@
+.anetd-avatar { display: inline-flex; align-items: center; justify-content: center; width: var(--anetd-avatar-size); height: var(--anetd-avatar-size); border-radius: var(--anetd-avatar-radius); background: var(--anetd-avatar-bg); color: var(--anetd-avatar-text); flex-shrink: 0; overflow: hidden; font-weight: var(--anetd-primitive-font-weight-semibold); font-size: 0.75em; user-select: none; }
+.anetd-avatar--sm { width: var(--anetd-avatar-size-sm); height: var(--anetd-avatar-size-sm); }
+.anetd-avatar--lg { width: var(--anetd-avatar-size-lg); height: var(--anetd-avatar-size-lg); }
+.anetd-avatar--square { border-radius: var(--anetd-primitive-radius-lg); }
+.anetd-avatar__img { width: 100%; height: 100%; object-fit: cover; }
+.anetd-avatar__initials, .anetd-avatar__icon { display: flex; align-items: center; justify-content: center; }

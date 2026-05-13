@@ -1,0 +1,10 @@
+.anetd-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--anetd-primitive-space-2);
+}
+.anetd-radio-group--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--anetd-primitive-space-4);
+}

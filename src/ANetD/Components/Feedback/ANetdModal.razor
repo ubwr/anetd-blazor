@@ -1,0 +1,93 @@
+@namespace ANetD.Components.Feedback
+@inject IANetDJSInterop JSInterop
+@implements IAsyncDisposable
+
+@if (IsOpen)
+{
+    <div class="anetd-modal-backdrop" @onclick="HandleBackdropClick" aria-hidden="true"></div>
+    <div class="@DialogClass" role="dialog" aria-modal="true"
+         aria-labelledby="@_titleId" @ref="_dialogEl" @attributes="AdditionalAttributes">
+        <div class="anetd-modal__header">
+            <h2 id="@_titleId" class="anetd-modal__title">@Title</h2>
+            @if (ShowCloseButton)
+            {
+                <button type="button" class="anetd-modal__close" aria-label="Close dialog" @onclick="CloseAsync">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            }
+        </div>
+        <div class="anetd-modal__body">@ChildContent</div>
+        @if (Footer is not null)
+        {
+            <div class="anetd-modal__footer">@Footer</div>
+        }
+    </div>
+}
+
+@code {
+    private readonly string _titleId = $"anetd-modal-title-{Guid.NewGuid():N}";
+    private readonly string _trapId = $"anetd-modal-trap-{Guid.NewGuid():N}";
+    private ElementReference _dialogEl;
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? Footer { get; set; }
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public bool ShowCloseButton { get; set; } = true;
+    [Parameter] public bool CloseOnBackdrop { get; set; } = true;
+    [Parameter] public ComponentSize Size { get; set; } = ComponentSize.Md;
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private bool _wasOpen;
+
+    private string DialogClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-modal")
+        .Add(Size switch { ComponentSize.Sm => "anetd-modal--sm", ComponentSize.Lg => "anetd-modal--lg", _ => "" })
+        .Add(Class).Build();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (IsOpen && !_wasOpen)
+        {
+            _wasOpen = true;
+            await JSInterop.LockBodyScrollAsync();
+        }
+        else if (!IsOpen && _wasOpen)
+        {
+            _wasOpen = false;
+            await JSInterop.UnlockBodyScrollAsync();
+            await JSInterop.ReleaseFocusTrapAsync(_trapId);
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (IsOpen && _dialogEl.Id is not null)
+            await JSInterop.TrapFocusAsync(_trapId, _dialogEl);
+    }
+
+    private async Task CloseAsync()
+    {
+        await IsOpenChanged.InvokeAsync(false);
+        await OnClose.InvokeAsync();
+    }
+
+    private async Task HandleBackdropClick()
+    {
+        if (CloseOnBackdrop) await CloseAsync();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_wasOpen)
+        {
+            await JSInterop.UnlockBodyScrollAsync();
+            await JSInterop.ReleaseFocusTrapAsync(_trapId);
+        }
+    }
+}

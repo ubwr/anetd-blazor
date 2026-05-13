@@ -1,0 +1,5 @@
+.anetd-breadcrumb-item { display: flex; align-items: center; gap: var(--anetd-primitive-space-1); }
+.anetd-breadcrumb-item__link { color: var(--anetd-color-text-link); text-decoration: none; }
+.anetd-breadcrumb-item__link:hover { text-decoration: underline; }
+.anetd-breadcrumb-item__current { color: var(--anetd-color-text-primary); font-weight: var(--anetd-primitive-font-weight-medium); }
+.anetd-breadcrumb-item__separator { color: var(--anetd-color-text-tertiary); }

@@ -1,0 +1,30 @@
+@page "/docs/components/modal"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Modal — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Modal</ANetdText>
+<ANetdText As="p">A dialog overlay for focused user interactions.</ANetdText>
+
+<ANetdText As="h2">Basic</ANetdText>
+<ANetdCard>
+    <ChildContent>
+        <ANetdButton Variant="ButtonVariant.Primary" OnClick="@(() => _open = true)">Open Modal</ANetdButton>
+    </ChildContent>
+</ANetdCard>
+
+<ANetdModal Title="Confirm Action"
+            @bind-IsOpen="_open"
+            Size="ComponentSize.Md">
+    <ChildContent>
+        <ANetdText As="p">Are you sure you want to proceed? This action cannot be undone.</ANetdText>
+    </ChildContent>
+    <Footer>
+        <ANetdButton Variant="ButtonVariant.Secondary" OnClick="@(() => _open = false)">Cancel</ANetdButton>
+        <ANetdButton Variant="ButtonVariant.Danger" OnClick="@(() => _open = false)">Delete</ANetdButton>
+    </Footer>
+</ANetdModal>
+
+@code {
+    private bool _open;
+}

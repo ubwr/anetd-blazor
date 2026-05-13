@@ -1,0 +1,38 @@
+@namespace ANetD.Components.Feedback
+
+<div class="@CssClass" role="alert" aria-live="polite" aria-atomic="true" @attributes="AdditionalAttributes">
+    <div class="anetd-toast__icon" aria-hidden="true">
+        @if (Message.Variant == ToastVariant.Success) {
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        } else if (Message.Variant == ToastVariant.Danger) {
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 5V8M8 11H8.01M14 8A6 6 0 1 1 2 8a6 6 0 0 1 12 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        } else if (Message.Variant == ToastVariant.Warning) {
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 6V9M8 11.5H8.01M2.5 13H13.5L8 3L2.5 13Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        } else {
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 7V11M8 5H8.01M14 8A6 6 0 1 1 2 8a6 6 0 0 1 12 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        }
+    </div>
+    <div class="anetd-toast__content">
+        <div class="anetd-toast__title">@Message.Title</div>
+        @if (!string.IsNullOrEmpty(Message.Message))
+        {
+            <div class="anetd-toast__body">@Message.Message</div>
+        }
+    </div>
+    @if (Message.IsDismissible)
+    {
+        <button type="button" class="anetd-toast__close" aria-label="Dismiss" @onclick="() => OnDismiss.InvokeAsync(Message.Id)">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public ToastMessage Message { get; set; } = null!;
+    [Parameter] public EventCallback<string> OnDismiss { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-toast")
+        .Add(Message.Variant switch { ToastVariant.Success => "anetd-toast--success", ToastVariant.Danger => "anetd-toast--danger", ToastVariant.Warning => "anetd-toast--warning", ToastVariant.Info => "anetd-toast--info", _ => "anetd-toast--default" })
+        .Build();
+}

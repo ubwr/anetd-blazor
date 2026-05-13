@@ -1,0 +1,5 @@
+.anetd-spinner { display: inline-flex; color: var(--anetd-color-brand-default); }
+.anetd-spinner__svg { width: 1.5rem; height: 1.5rem; animation: anetd-spin 0.7s linear infinite; }
+.anetd-spinner--sm .anetd-spinner__svg { width: 1rem; height: 1rem; }
+.anetd-spinner--lg .anetd-spinner__svg { width: 2rem; height: 2rem; }
+@keyframes anetd-spin { to { transform: rotate(360deg); } }

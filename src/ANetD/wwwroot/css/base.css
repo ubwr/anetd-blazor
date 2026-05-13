@@ -1,0 +1,147 @@
+/* ANetD Base Styles — Resets and typography scale */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+body {
+  margin: 0;
+  font-family: var(--anetd-font-family);
+  font-size: var(--anetd-font-size-base);
+  line-height: var(--anetd-line-height-base);
+  color: var(--anetd-color-text-primary);
+  background-color: var(--anetd-color-bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Focus ring ──────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--anetd-color-focus-ring);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--anetd-scrollbar-thumb) var(--anetd-scrollbar-track);
+}
+
+*::-webkit-scrollbar {
+  width: var(--anetd-scrollbar-width);
+  height: var(--anetd-scrollbar-width);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--anetd-scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--anetd-scrollbar-thumb);
+  border-radius: var(--anetd-primitive-radius-full);
+}
+
+/* ─── Typography helpers ─────────────────────────────── */
+.anetd-h1 {
+  font-size: var(--anetd-primitive-font-size-5xl);
+  font-weight: var(--anetd-primitive-font-weight-bold);
+  line-height: var(--anetd-primitive-line-height-tight);
+  letter-spacing: -0.025em;
+  color: var(--anetd-color-text-primary);
+}
+
+.anetd-h2 {
+  font-size: var(--anetd-primitive-font-size-4xl);
+  font-weight: var(--anetd-primitive-font-weight-bold);
+  line-height: var(--anetd-primitive-line-height-tight);
+  letter-spacing: -0.025em;
+  color: var(--anetd-color-text-primary);
+}
+
+.anetd-h3 {
+  font-size: var(--anetd-primitive-font-size-3xl);
+  font-weight: var(--anetd-primitive-font-weight-semibold);
+  line-height: var(--anetd-primitive-line-height-snug);
+  color: var(--anetd-color-text-primary);
+}
+
+.anetd-h4 {
+  font-size: var(--anetd-primitive-font-size-2xl);
+  font-weight: var(--anetd-primitive-font-weight-semibold);
+  line-height: var(--anetd-primitive-line-height-snug);
+  color: var(--anetd-color-text-primary);
+}
+
+.anetd-h5 {
+  font-size: var(--anetd-primitive-font-size-xl);
+  font-weight: var(--anetd-primitive-font-weight-semibold);
+  line-height: var(--anetd-primitive-line-height-snug);
+  color: var(--anetd-color-text-primary);
+}
+
+.anetd-h6 {
+  font-size: var(--anetd-primitive-font-size-lg);
+  font-weight: var(--anetd-primitive-font-weight-semibold);
+  line-height: var(--anetd-primitive-line-height-snug);
+  color: var(--anetd-color-text-primary);
+}
+
+.anetd-text-body {
+  font-size: var(--anetd-primitive-font-size-base);
+  line-height: var(--anetd-primitive-line-height-normal);
+  color: var(--anetd-color-text-primary);
+}
+
+.anetd-text-sm {
+  font-size: var(--anetd-primitive-font-size-sm);
+  line-height: var(--anetd-primitive-line-height-normal);
+}
+
+.anetd-text-xs {
+  font-size: var(--anetd-primitive-font-size-xs);
+  line-height: var(--anetd-primitive-line-height-normal);
+}
+
+.anetd-text-secondary {
+  color: var(--anetd-color-text-secondary);
+}
+
+.anetd-text-muted {
+  color: var(--anetd-color-text-tertiary);
+}
+
+.anetd-code {
+  font-family: var(--anetd-font-family-mono);
+  font-size: 0.875em;
+  background: var(--anetd-color-bg-muted);
+  border: 1px solid var(--anetd-color-border-subtle);
+  border-radius: var(--anetd-primitive-radius-sm);
+  padding: 1px 4px;
+}
+
+/* ─── Visually hidden (accessibility) ───────────────── */
+.anetd-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,27 @@
+@namespace ANetD.Components.Feedback
+
+<div class="@CssClass" style="@StyleValue" aria-busy="true" aria-label="Loading..." @attributes="AdditionalAttributes"></div>
+
+@code {
+    [Parameter] public string? Width { get; set; }
+    [Parameter] public string? Height { get; set; }
+    [Parameter] public bool Circle { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-skeleton").AddIf("anetd-skeleton--circle", Circle).Add(Class).Build();
+
+    private string? StyleValue
+    {
+        get
+        {
+            var sb = new ANetD.Utilities.StyleBuilder();
+            if (!string.IsNullOrEmpty(Width)) sb.Add("width", Width);
+            if (!string.IsNullOrEmpty(Height)) sb.Add("height", Height);
+            var custom = sb.Build();
+            return string.IsNullOrEmpty(Style) ? custom : (custom == null ? Style : $"{custom};{Style}");
+        }
+    }
+}

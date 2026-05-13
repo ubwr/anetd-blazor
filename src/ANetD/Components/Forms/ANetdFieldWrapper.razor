@@ -1,0 +1,31 @@
+@namespace ANetD.Components.Forms
+
+<div class="@CssClass" @attributes="AdditionalAttributes">
+    @if (LabelContent is not null)
+    {
+        <div class="anetd-field-wrapper__label">@LabelContent</div>
+    }
+    @ChildContent
+    @if (ErrorContent is not null)
+    {
+        <div class="anetd-field-error" role="alert">@ErrorContent</div>
+    }
+    @if (HelpContent is not null && ErrorContent is null)
+    {
+        <div class="anetd-field-help">@HelpContent</div>
+    }
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? LabelContent { get; set; }
+    [Parameter] public RenderFragment? ErrorContent { get; set; }
+    [Parameter] public RenderFragment? HelpContent { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-field")
+        .Add(Class)
+        .Build();
+}

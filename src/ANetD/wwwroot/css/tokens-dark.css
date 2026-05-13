@@ -1,0 +1,80 @@
+/* ANetD Dark Theme — Semantic Token Overrides
+   Applied when [data-theme="dark"] is set on any ancestor element. */
+
+[data-theme="dark"] {
+  /* ─── Surface / Background ───────────────────────────── */
+  --anetd-color-bg-base:         #0f1117;
+  --anetd-color-bg-subtle:       #161b22;
+  --anetd-color-bg-muted:        #1c2333;
+  --anetd-color-bg-emphasis:     #2d3444;
+  --anetd-color-bg-inverse:      var(--anetd-primitive-gray-0);
+  --anetd-color-bg-overlay:      #1c2333;
+
+  /* ─── Text ───────────────────────────────────────────── */
+  --anetd-color-text-primary:    #e6edf3;
+  --anetd-color-text-secondary:  #8b949e;
+  --anetd-color-text-tertiary:   #6e7681;
+  --anetd-color-text-disabled:   #484f58;
+  --anetd-color-text-inverse:    var(--anetd-primitive-gray-900);
+  --anetd-color-text-link:       var(--anetd-primitive-brand-400);
+  --anetd-color-text-link-hover: var(--anetd-primitive-brand-300);
+  --anetd-color-text-on-brand:   var(--anetd-primitive-gray-0);
+
+  /* ─── Brand ──────────────────────────────────────────── */
+  --anetd-color-brand-subtle:    rgba(92, 1, 229, 0.15);
+  --anetd-color-brand-muted:     rgba(92, 1, 229, 0.25);
+  --anetd-color-brand-default:   var(--anetd-primitive-brand-500);
+  --anetd-color-brand-hover:     var(--anetd-primitive-brand-400);
+  --anetd-color-brand-active:    var(--anetd-primitive-brand-600);
+  --anetd-color-brand-border:    var(--anetd-primitive-brand-700);
+
+  /* ─── Borders ────────────────────────────────────────── */
+  --anetd-color-border-subtle:   #21262d;
+  --anetd-color-border-default:  #30363d;
+  --anetd-color-border-strong:   #484f58;
+  --anetd-color-border-focus:    var(--anetd-primitive-brand-400);
+
+  /* ─── Status: Danger ─────────────────────────────────── */
+  --anetd-color-danger-subtle:   rgba(220, 38, 38, 0.12);
+  --anetd-color-danger-muted:    rgba(220, 38, 38, 0.2);
+  --anetd-color-danger-default:  var(--anetd-primitive-red-500);
+  --anetd-color-danger-hover:    var(--anetd-primitive-red-400);
+  --anetd-color-danger-active:   var(--anetd-primitive-red-600);
+  --anetd-color-danger-border:   rgba(220, 38, 38, 0.4);
+  --anetd-color-danger-text:     var(--anetd-primitive-red-400);
+
+  /* ─── Status: Warning ────────────────────────────────── */
+  --anetd-color-warning-subtle:  rgba(245, 158, 11, 0.12);
+  --anetd-color-warning-muted:   rgba(245, 158, 11, 0.2);
+  --anetd-color-warning-default: var(--anetd-primitive-yellow-400);
+  --anetd-color-warning-hover:   var(--anetd-primitive-yellow-300);
+  --anetd-color-warning-border:  rgba(245, 158, 11, 0.4);
+  --anetd-color-warning-text:    var(--anetd-primitive-yellow-400);
+
+  /* ─── Status: Success ────────────────────────────────── */
+  --anetd-color-success-subtle:  rgba(34, 197, 94, 0.12);
+  --anetd-color-success-muted:   rgba(34, 197, 94, 0.2);
+  --anetd-color-success-default: var(--anetd-primitive-green-500);
+  --anetd-color-success-hover:   var(--anetd-primitive-green-400);
+  --anetd-color-success-border:  rgba(34, 197, 94, 0.4);
+  --anetd-color-success-text:    var(--anetd-primitive-green-400);
+
+  /* ─── Status: Info ───────────────────────────────────── */
+  --anetd-color-info-subtle:     rgba(59, 130, 246, 0.12);
+  --anetd-color-info-muted:      rgba(59, 130, 246, 0.2);
+  --anetd-color-info-default:    var(--anetd-primitive-blue-400);
+  --anetd-color-info-hover:      var(--anetd-primitive-blue-300);
+  --anetd-color-info-border:     rgba(59, 130, 246, 0.4);
+  --anetd-color-info-text:       var(--anetd-primitive-blue-400);
+
+  /* ─── Interactive states ─────────────────────────────── */
+  --anetd-color-hover-overlay:   rgb(255 255 255 / 0.06);
+  --anetd-color-active-overlay:  rgb(255 255 255 / 0.1);
+  --anetd-color-focus-ring:      var(--anetd-primitive-brand-400);
+
+  /* ─── Overlay / backdrop ─────────────────────────────── */
+  --anetd-color-backdrop: rgb(0 0 0 / 0.65);
+
+  /* ─── Scrollbar ──────────────────────────────────────── */
+  --anetd-scrollbar-thumb: #484f58;
+}

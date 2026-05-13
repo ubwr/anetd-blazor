@@ -1,0 +1,43 @@
+@namespace ANetD.Components.Forms
+@inherits InputBase<bool>
+
+<label class="@LabelClass" @attributes="AdditionalAttributes">
+    <input type="checkbox"
+           class="anetd-toggle__input"
+           role="switch"
+           checked="@CurrentValue"
+           disabled="@Disabled"
+           aria-checked="@(CurrentValue.ToString().ToLower())"
+           @onchange="HandleChange" />
+    <span class="anetd-toggle__track" aria-hidden="true">
+        <span class="anetd-toggle__thumb"></span>
+    </span>
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <span class="anetd-toggle__label">@Label</span>
+    }
+</label>
+
+@code {
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public ComponentSize Size { get; set; } = ComponentSize.Md;
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string LabelClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-toggle")
+        .Add(Size switch { ComponentSize.Sm => "anetd-toggle--sm", ComponentSize.Lg => "anetd-toggle--lg", _ => "" })
+        .AddIf("anetd-toggle--disabled", Disabled)
+        .Add(Class)
+        .Build();
+
+    protected override bool TryParseValueFromString(string? value, out bool result, out string validationErrorMessage)
+    {
+        result = false;
+        validationErrorMessage = string.Empty;
+        return false;
+    }
+
+    private void HandleChange(ChangeEventArgs e) => CurrentValue = e.Value is true;
+}

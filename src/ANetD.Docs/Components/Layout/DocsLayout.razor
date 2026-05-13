@@ -1,0 +1,114 @@
+@namespace ANetD.Docs.Components.Layout
+@inherits LayoutComponentBase
+@inject ANetD.Services.ThemeService ThemeService
+@inject IANetDJSInterop JSInterop
+@implements IDisposable
+
+<div class="docs-shell">
+    <ANetdNavbar Sticky="true">
+        <Brand>
+            <a href="/" class="docs-brand">
+                <span class="docs-brand__logo">A</span>
+                <span class="docs-brand__name">ANetD</span>
+                <ANetdBadge Color="ComponentColor.Primary">v0.1</ANetdBadge>
+            </a>
+        </Brand>
+        <ChildContent>
+            <ANetdNavItem Href="/docs/getting-started">Docs</ANetdNavItem>
+            <ANetdNavItem Href="/docs/theming">Theming</ANetdNavItem>
+            <ANetdNavItem Href="/docs/components">Components</ANetdNavItem>
+        </ChildContent>
+        <Actions>
+            <button type="button" class="docs-theme-toggle" title="Toggle theme" @onclick="ToggleTheme">
+                @if (ThemeService.CurrentTheme == "dark")
+                {
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                }
+                else
+                {
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                }
+            </button>
+            <a href="https://github.com/ubwr/anetd-blazor" class="docs-github-link" aria-label="GitHub repository" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </a>
+        </Actions>
+    </ANetdNavbar>
+
+    <div class="docs-body">
+        <ANetdSidebar>
+            <Header>
+                <span class="docs-sidebar-title">Navigation</span>
+            </Header>
+            <ChildContent>
+                <div class="docs-sidebar-section">Getting Started</div>
+                <ANetdSidebarItem Href="/docs/getting-started" Label="Installation" Active="@IsActive("/docs/getting-started")" />
+                <ANetdSidebarItem Href="/docs/theming" Label="Theming" Active="@IsActive("/docs/theming")" />
+
+                <div class="docs-sidebar-section">Layout</div>
+                <ANetdSidebarItem Href="/docs/components/stack" Label="Stack" Active="@IsActive("/docs/components/stack")" />
+                <ANetdSidebarItem Href="/docs/components/card" Label="Card" Active="@IsActive("/docs/components/card")" />
+                <ANetdSidebarItem Href="/docs/components/divider" Label="Divider" Active="@IsActive("/docs/components/divider")" />
+
+                <div class="docs-sidebar-section">Forms</div>
+                <ANetdSidebarItem Href="/docs/components/button" Label="Button" Active="@IsActive("/docs/components/button")" />
+                <ANetdSidebarItem Href="/docs/components/textinput" Label="TextInput" Active="@IsActive("/docs/components/textinput")" />
+                <ANetdSidebarItem Href="/docs/components/select" Label="Select" Active="@IsActive("/docs/components/select")" />
+                <ANetdSidebarItem Href="/docs/components/checkbox" Label="Checkbox" Active="@IsActive("/docs/components/checkbox")" />
+                <ANetdSidebarItem Href="/docs/components/toggle" Label="Toggle" Active="@IsActive("/docs/components/toggle")" />
+
+                <div class="docs-sidebar-section">Navigation</div>
+                <ANetdSidebarItem Href="/docs/components/navbar" Label="Navbar" Active="@IsActive("/docs/components/navbar")" />
+                <ANetdSidebarItem Href="/docs/components/tabs" Label="Tabs" Active="@IsActive("/docs/components/tabs")" />
+                <ANetdSidebarItem Href="/docs/components/pagination" Label="Pagination" Active="@IsActive("/docs/components/pagination")" />
+                <ANetdSidebarItem Href="/docs/components/breadcrumb" Label="Breadcrumb" Active="@IsActive("/docs/components/breadcrumb")" />
+
+                <div class="docs-sidebar-section">Feedback</div>
+                <ANetdSidebarItem Href="/docs/components/alert" Label="Alert" Active="@IsActive("/docs/components/alert")" />
+                <ANetdSidebarItem Href="/docs/components/badge" Label="Badge" Active="@IsActive("/docs/components/badge")" />
+                <ANetdSidebarItem Href="/docs/components/modal" Label="Modal" Active="@IsActive("/docs/components/modal")" />
+                <ANetdSidebarItem Href="/docs/components/toast" Label="Toast" Active="@IsActive("/docs/components/toast")" />
+                <ANetdSidebarItem Href="/docs/components/progress" Label="Progress" Active="@IsActive("/docs/components/progress")" />
+                <ANetdSidebarItem Href="/docs/components/spinner" Label="Spinner" Active="@IsActive("/docs/components/spinner")" />
+                <ANetdSidebarItem Href="/docs/components/skeleton" Label="Skeleton" Active="@IsActive("/docs/components/skeleton")" />
+
+                <div class="docs-sidebar-section">Data Display</div>
+                <ANetdSidebarItem Href="/docs/components/table" Label="Table" Active="@IsActive("/docs/components/table")" />
+                <ANetdSidebarItem Href="/docs/components/avatar" Label="Avatar" Active="@IsActive("/docs/components/avatar")" />
+                <ANetdSidebarItem Href="/docs/components/tag" Label="Tag" Active="@IsActive("/docs/components/tag")" />
+                <ANetdSidebarItem Href="/docs/components/stat" Label="Stat" Active="@IsActive("/docs/components/stat")" />
+            </ChildContent>
+        </ANetdSidebar>
+
+        <main class="docs-main">
+            <div class="docs-content">
+                @Body
+            </div>
+        </main>
+    </div>
+</div>
+
+<ANetdToastContainer />
+
+@code {
+    [Inject] NavigationManager Navigation { get; set; } = null!;
+
+    protected override void OnInitialized()
+    {
+        ThemeService.OnThemeChanged += StateHasChanged;
+    }
+
+    private bool IsActive(string path) =>
+        Navigation.Uri.EndsWith(path, StringComparison.OrdinalIgnoreCase);
+
+    private async Task ToggleTheme()
+    {
+        ThemeService.ToggleTheme();
+        await JSInterop.SetThemeAsync(ThemeService.CurrentTheme);
+    }
+
+    public void Dispose()
+    {
+        ThemeService.OnThemeChanged -= StateHasChanged;
+    }
+}

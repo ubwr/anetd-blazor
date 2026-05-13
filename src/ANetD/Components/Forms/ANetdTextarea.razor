@@ -1,0 +1,66 @@
+@namespace ANetD.Components.Forms
+@inherits InputBase<string?>
+
+<div class="anetd-field @Class">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label for="@_id" class="anetd-label">
+            @Label
+            @if (Required) { <span class="anetd-label__required" aria-hidden="true">*</span> }
+        </label>
+    }
+    <textarea id="@_id"
+              class="@TextareaClass"
+              value="@CurrentValue"
+              placeholder="@Placeholder"
+              disabled="@Disabled"
+              readonly="@ReadOnly"
+              rows="@Rows"
+              aria-required="@(Required ? "true" : null)"
+              aria-invalid="@(HasError ? "true" : null)"
+              @oninput="HandleInput"
+              @onblur="HandleBlur"
+              @attributes="AdditionalAttributes">@CurrentValue</textarea>
+    @if (HasError && ShowValidationMessage)
+    {
+        <div class="anetd-field-error" role="alert">
+            @(EditContext?.GetValidationMessages(FieldIdentifier).FirstOrDefault() ?? string.Empty)
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(HelpText) && !HasError)
+    {
+        <div class="anetd-field-help">@HelpText</div>
+    }
+</div>
+
+@code {
+    private readonly string _id = $"anetd-ta-{Guid.NewGuid():N}";
+
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? Placeholder { get; set; }
+    [Parameter] public int Rows { get; set; } = 3;
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool ReadOnly { get; set; }
+    [Parameter] public bool Required { get; set; }
+    [Parameter] public bool ShowValidationMessage { get; set; } = true;
+    [Parameter] public string? HelpText { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private bool HasError => EditContext is not null && EditContext.GetValidationMessages(FieldIdentifier).Any();
+
+    private string TextareaClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-textarea")
+        .AddIf("anetd-input--error", HasError)
+        .Build();
+
+    protected override bool TryParseValueFromString(string? value, out string? result, out string validationErrorMessage)
+    {
+        result = value;
+        validationErrorMessage = string.Empty;
+        return true;
+    }
+
+    private void HandleInput(ChangeEventArgs e) => CurrentValueAsString = e.Value?.ToString();
+    private void HandleBlur(FocusEventArgs e) => EditContext?.NotifyFieldChanged(FieldIdentifier);
+}

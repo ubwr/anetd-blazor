@@ -1,0 +1,4 @@
+.anetd-skeleton { display: block; background: var(--anetd-skeleton-base); border-radius: var(--anetd-skeleton-radius); overflow: hidden; position: relative; min-height: 1rem; }
+.anetd-skeleton::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, var(--anetd-skeleton-shine) 50%, transparent 100%); transform: translateX(-100%); animation: anetd-shimmer 1.5s infinite; }
+.anetd-skeleton--circle { border-radius: 50%; }
+@keyframes anetd-shimmer { to { transform: translateX(100%); } }

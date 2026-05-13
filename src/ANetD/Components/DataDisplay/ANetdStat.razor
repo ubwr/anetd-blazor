@@ -1,0 +1,41 @@
+@namespace ANetD.Components.DataDisplay
+
+<div class="@CssClass" @attributes="AdditionalAttributes">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <div class="anetd-stat__label">@Label</div>
+    }
+    <div class="anetd-stat__value">
+        @if (Icon is not null)
+        {
+            <span class="anetd-stat__icon" aria-hidden="true">@Icon</span>
+        }
+        @Value
+    </div>
+    @if (!string.IsNullOrEmpty(Trend))
+    {
+        <div class="@TrendClass">@Trend</div>
+    }
+    @if (!string.IsNullOrEmpty(Description))
+    {
+        <div class="anetd-stat__desc">@Description</div>
+    }
+</div>
+
+@code {
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? Value { get; set; }
+    [Parameter] public string? Trend { get; set; }
+    [Parameter] public bool TrendPositive { get; set; }
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public RenderFragment? Icon { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder().Add("anetd-stat").Add(Class).Build();
+    private string TrendClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-stat__trend")
+        .AddIf("anetd-stat__trend--positive", TrendPositive)
+        .AddIf("anetd-stat__trend--negative", !TrendPositive && !string.IsNullOrEmpty(Trend))
+        .Build();
+}

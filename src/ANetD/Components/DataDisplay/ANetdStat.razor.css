@@ -1,0 +1,8 @@
+.anetd-stat { display: flex; flex-direction: column; gap: var(--anetd-primitive-space-1); }
+.anetd-stat__label { font-size: var(--anetd-primitive-font-size-sm); font-weight: var(--anetd-primitive-font-weight-medium); color: var(--anetd-color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+.anetd-stat__value { display: flex; align-items: center; gap: var(--anetd-primitive-space-2); font-size: var(--anetd-primitive-font-size-4xl); font-weight: var(--anetd-primitive-font-weight-bold); color: var(--anetd-color-text-primary); line-height: 1.1; }
+.anetd-stat__icon { display: flex; align-items: center; color: var(--anetd-color-brand-default); }
+.anetd-stat__trend { display: inline-flex; align-items: center; font-size: var(--anetd-primitive-font-size-sm); font-weight: var(--anetd-primitive-font-weight-medium); }
+.anetd-stat__trend--positive { color: var(--anetd-color-success-text); }
+.anetd-stat__trend--negative { color: var(--anetd-color-danger-text); }
+.anetd-stat__desc { font-size: var(--anetd-primitive-font-size-sm); color: var(--anetd-color-text-secondary); }

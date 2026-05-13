@@ -1,0 +1,54 @@
+@namespace ANetD.Components.DataDisplay
+
+<span class="@CssClass" title="@Name" style="@StyleValue" @attributes="AdditionalAttributes">
+    @if (!string.IsNullOrEmpty(Src))
+    {
+        <img src="@Src" alt="@Name" class="anetd-avatar__img" />
+    }
+    else if (!string.IsNullOrEmpty(Name))
+    {
+        <span class="anetd-avatar__initials" aria-hidden="true">@GetInitials()</span>
+    }
+    else if (Icon is not null)
+    {
+        <span class="anetd-avatar__icon" aria-hidden="true">@Icon</span>
+    }
+</span>
+
+@code {
+    [Parameter] public string? Src { get; set; }
+    [Parameter] public string? Name { get; set; }
+    [Parameter] public RenderFragment? Icon { get; set; }
+    [Parameter] public ComponentSize Size { get; set; } = ComponentSize.Md;
+    [Parameter] public AvatarShape Shape { get; set; } = AvatarShape.Circle;
+    [Parameter] public string? Color { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-avatar")
+        .Add(Size switch { ComponentSize.Sm => "anetd-avatar--sm", ComponentSize.Lg => "anetd-avatar--lg", _ => "" })
+        .AddIf("anetd-avatar--square", Shape == AvatarShape.Square)
+        .Add(Class).Build();
+
+    private string? StyleValue
+    {
+        get
+        {
+            var sb = new ANetD.Utilities.StyleBuilder();
+            if (!string.IsNullOrEmpty(Color)) sb.Add("--anetd-avatar-bg", Color);
+            var custom = sb.Build();
+            return string.IsNullOrEmpty(Style) ? custom : (custom == null ? Style : $"{custom};{Style}");
+        }
+    }
+
+    private string GetInitials()
+    {
+        if (string.IsNullOrEmpty(Name)) return "?";
+        var parts = Name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        return parts.Length >= 2
+            ? $"{parts[0][0]}{parts[^1][0]}".ToUpper()
+            : Name[..Math.Min(2, Name.Length)].ToUpper();
+    }
+}

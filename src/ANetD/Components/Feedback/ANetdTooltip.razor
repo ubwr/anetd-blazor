@@ -1,0 +1,44 @@
+@namespace ANetD.Components.Feedback
+@inject IANetDJSInterop JSInterop
+
+<div class="anetd-tooltip-wrapper" @ref="_wrapperEl"
+     @onmouseenter="ShowAsync" @onmouseleave="Hide"
+     @onfocus="ShowAsync" @onblur="Hide">
+    @ChildContent
+    @if (_visible)
+    {
+        <div class="anetd-tooltip" role="tooltip" @ref="_tooltipEl">@Content</div>
+    }
+</div>
+
+@code {
+    private ElementReference _wrapperEl;
+    private ElementReference _tooltipEl;
+    private bool _visible;
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Content { get; set; }
+    [Parameter] public Placement Placement { get; set; } = Placement.Top;
+
+    private string GetJsPlacement() => Placement switch
+    {
+        Placement.TopStart    => "top-start",
+        Placement.TopEnd      => "top-end",
+        Placement.BottomStart => "bottom-start",
+        Placement.BottomEnd   => "bottom-end",
+        Placement.Left        => "left",
+        Placement.Right       => "right",
+        Placement.Bottom      => "bottom",
+        _                     => "top",
+    };
+
+    private async Task ShowAsync()
+    {
+        _visible = true;
+        StateHasChanged();
+        await Task.Yield();
+        await JSInterop.PositionFloatingAsync(_tooltipEl, _wrapperEl, GetJsPlacement(), 6);
+    }
+
+    private void Hide() { _visible = false; StateHasChanged(); }
+}

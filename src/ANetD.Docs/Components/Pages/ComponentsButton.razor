@@ -1,0 +1,80 @@
+@page "/docs/components/button"
+@namespace ANetD.Docs.Components.Pages
+@inject IToastService Toast
+
+<PageTitle>Button — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Button</ANetdText>
+<ANetdText As="p">
+    Triggers actions and navigations. Supports five variants, three sizes, loading state, and icon slots.
+</ANetdText>
+
+<ANetdText As="h2">Variants</ANetdText>
+<ANetdCard>
+    <ChildContent>
+        <ANetdStack Direction="StackDirection.Horizontal" Wrap="true" Gap="var(--anetd-primitive-space-2)">
+            <ANetdButton Variant="ButtonVariant.Primary" OnClick="@(() => Toast.ShowSuccess("Primary clicked"))">Primary</ANetdButton>
+            <ANetdButton Variant="ButtonVariant.Secondary">Secondary</ANetdButton>
+            <ANetdButton Variant="ButtonVariant.Ghost">Ghost</ANetdButton>
+            <ANetdButton Variant="ButtonVariant.Danger">Danger</ANetdButton>
+            <ANetdButton Variant="ButtonVariant.Link">Link</ANetdButton>
+        </ANetdStack>
+    </ChildContent>
+</ANetdCard>
+
+<ANetdText As="h2">Sizes</ANetdText>
+<ANetdCard>
+    <ChildContent>
+        <ANetdStack Direction="StackDirection.Horizontal" Wrap="true" Gap="var(--anetd-primitive-space-2)">
+            <ANetdButton Variant="ButtonVariant.Primary" Size="ComponentSize.Sm">Small</ANetdButton>
+            <ANetdButton Variant="ButtonVariant.Primary" Size="ComponentSize.Md">Medium</ANetdButton>
+            <ANetdButton Variant="ButtonVariant.Primary" Size="ComponentSize.Lg">Large</ANetdButton>
+        </ANetdStack>
+    </ChildContent>
+</ANetdCard>
+
+<ANetdText As="h2">States</ANetdText>
+<ANetdCard>
+    <ChildContent>
+        <ANetdStack Direction="StackDirection.Horizontal" Wrap="true" Gap="var(--anetd-primitive-space-2)">
+            <ANetdButton Variant="ButtonVariant.Primary" Loading="true">Loading</ANetdButton>
+            <ANetdButton Variant="ButtonVariant.Primary" Disabled="true">Disabled</ANetdButton>
+            <ANetdButton Variant="ButtonVariant.Secondary" FullWidth="true">Full Width</ANetdButton>
+        </ANetdStack>
+    </ChildContent>
+</ANetdCard>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Variant",    "ButtonVariant", "Primary",    "Visual style variant"),
+        new("Size",       "ComponentSize", "Md",         "Height and font size"),
+        new("Type",       "string",        "\"button\"", "HTML button type attribute"),
+        new("Disabled",   "bool",          "false",      "Disables the button"),
+        new("Loading",    "bool",          "false",      "Shows a spinner and disables interaction"),
+        new("FullWidth",  "bool",          "false",      "Stretches to fill its container"),
+        new("OnClick",    "EventCallback<MouseEventArgs>", "-", "Click event handler"),
+        new("IconStart",  "RenderFragment?", "null",     "Icon rendered before label"),
+        new("IconEnd",    "RenderFragment?", "null",     "Icon rendered after label"),
+    };
+}

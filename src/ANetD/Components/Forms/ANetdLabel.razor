@@ -1,0 +1,22 @@
+@namespace ANetD.Components.Forms
+
+<label class="@CssClass" for="@For" @attributes="AdditionalAttributes">
+    @ChildContent
+    @if (Required)
+    {
+        <span class="anetd-label__required" aria-hidden="true">*</span>
+    }
+</label>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? For { get; set; }
+    [Parameter] public bool Required { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-label")
+        .Add(Class)
+        .Build();
+}

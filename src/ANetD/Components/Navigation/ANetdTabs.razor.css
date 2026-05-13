@@ -1,0 +1,2 @@
+.anetd-tabs__list { display: flex; border-bottom: 1px solid var(--anetd-tabs-border); gap: var(--anetd-primitive-space-0-5); }
+.anetd-tabs__panels { padding-top: var(--anetd-primitive-space-4); }

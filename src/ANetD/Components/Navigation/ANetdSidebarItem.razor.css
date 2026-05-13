@@ -1,0 +1,19 @@
+.anetd-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: var(--anetd-primitive-space-2-5);
+    padding: 0 var(--anetd-primitive-space-3);
+    height: 2.25rem;
+    font-size: var(--anetd-font-size-base);
+    font-weight: var(--anetd-primitive-font-weight-medium);
+    color: var(--anetd-color-text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background var(--anetd-primitive-duration-base), color var(--anetd-primitive-duration-base);
+    white-space: nowrap;
+    overflow: hidden;
+}
+.anetd-sidebar-item:hover:not(.anetd-sidebar-item--active) { background: var(--anetd-color-hover-overlay); color: var(--anetd-color-text-primary); }
+.anetd-sidebar-item--active { background: var(--anetd-color-brand-subtle); color: var(--anetd-color-brand-default); font-weight: var(--anetd-primitive-font-weight-semibold); }
+.anetd-sidebar-item__icon { display: flex; align-items: center; flex-shrink: 0; width: 1.125rem; height: 1.125rem; }
+.anetd-sidebar-item__label { flex: 1; overflow: hidden; text-overflow: ellipsis; }

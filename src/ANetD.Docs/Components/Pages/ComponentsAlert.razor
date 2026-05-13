@@ -1,0 +1,19 @@
+@page "/docs/components/alert"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Alert — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Alert</ANetdText>
+<ANetdText As="p">Displays contextual feedback messages for the user.</ANetdText>
+
+<ANetdText As="h2">Variants</ANetdText>
+<ANetdCard>
+    <ChildContent>
+        <ANetdStack Gap="var(--anetd-primitive-space-2)">
+            <ANetdAlert Variant="AlertVariant.Info"    Title="Info"    ChildContent="@((__builder) => { __builder.AddContent(0, "This is an informational message."); })" />
+            <ANetdAlert Variant="AlertVariant.Success" Title="Success" ChildContent="@((__builder) => { __builder.AddContent(0, "Your changes have been saved."); })" />
+            <ANetdAlert Variant="AlertVariant.Warning" Title="Warning" ChildContent="@((__builder) => { __builder.AddContent(0, "This action may have unintended consequences."); })" />
+            <ANetdAlert Variant="AlertVariant.Danger"  Title="Error"   ChildContent="@((__builder) => { __builder.AddContent(0, "Something went wrong. Please try again."); })" />
+        </ANetdStack>
+    </ChildContent>
+</ANetdCard>

@@ -1,0 +1,8 @@
+.anetd-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.anetd-scroll--x {
+    overflow-x: auto;
+    overflow-y: hidden;
+}

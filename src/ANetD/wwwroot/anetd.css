@@ -1,0 +1,10 @@
+/* ANetD — Main Stylesheet
+   Add to your Blazor app's <head>:
+   <link rel="stylesheet" href="_content/ANetD/anetd.css" />
+*/
+
+@import url('./css/tokens-primitives.css');
+@import url('./css/tokens-semantic.css');
+@import url('./css/tokens-dark.css');
+@import url('./css/tokens-components.css');
+@import url('./css/base.css');

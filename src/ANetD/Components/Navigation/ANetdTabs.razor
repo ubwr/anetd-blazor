@@ -1,0 +1,15 @@
+@namespace ANetD.Components.Navigation
+
+<div class="@CssClass" @attributes="AdditionalAttributes">
+    <div class="anetd-tabs__list" role="tablist">@TabList</div>
+    <div class="anetd-tabs__panels">@ChildContent</div>
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? TabList { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder().Add("anetd-tabs").Add(Class).Build();
+}

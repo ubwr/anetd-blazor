@@ -1,0 +1,26 @@
+.anetd-card {
+    background: var(--anetd-card-bg);
+    border: 1px solid var(--anetd-card-border);
+    border-radius: var(--anetd-card-radius);
+    box-shadow: var(--anetd-card-shadow);
+    overflow: hidden;
+}
+.anetd-card__header {
+    padding: var(--anetd-card-padding);
+    border-bottom: 1px solid var(--anetd-card-border);
+    font-weight: var(--anetd-primitive-font-weight-semibold);
+}
+.anetd-card__body {
+    padding: var(--anetd-card-padding);
+}
+.anetd-card--no-padding .anetd-card__body {
+    padding: 0;
+}
+.anetd-card__footer {
+    padding: var(--anetd-card-padding);
+    border-top: 1px solid var(--anetd-card-border);
+    background: var(--anetd-color-bg-subtle);
+}
+.anetd-card--flat {
+    box-shadow: none;
+}

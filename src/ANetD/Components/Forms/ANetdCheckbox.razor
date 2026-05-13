@@ -1,0 +1,52 @@
+@namespace ANetD.Components.Forms
+@inherits InputBase<bool>
+
+<label class="@LabelClass" @attributes="AdditionalAttributes">
+    <input type="checkbox"
+           class="anetd-checkbox__input"
+           checked="@CurrentValue"
+           disabled="@Disabled"
+           @onchange="HandleChange"
+           aria-required="@(Required ? "true" : null)" />
+    <span class="anetd-checkbox__box" aria-hidden="true"></span>
+    @if (ChildContent is not null || !string.IsNullOrEmpty(Label))
+    {
+        <span class="anetd-checkbox__label">
+            @if (ChildContent is not null)
+            {
+                @ChildContent
+            }
+            else
+            {
+                @Label
+            }
+        </span>
+    }
+</label>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public bool Required { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string LabelClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-checkbox")
+        .AddIf("anetd-checkbox--disabled", Disabled)
+        .Add(Class)
+        .Build();
+
+    protected override bool TryParseValueFromString(string? value, out bool result, out string validationErrorMessage)
+    {
+        result = false;
+        validationErrorMessage = string.Empty;
+        return false;
+    }
+
+    private void HandleChange(ChangeEventArgs e)
+    {
+        CurrentValue = e.Value is true;
+    }
+}

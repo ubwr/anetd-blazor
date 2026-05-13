@@ -1,0 +1,161 @@
+/* ANetD Component Tokens — Layer 3
+   Per-component override points. Reference semantic tokens. */
+
+:root {
+  /* ─── Button ─────────────────────────────────────────── */
+  --anetd-button-font-size:          var(--anetd-font-size-base);
+  --anetd-button-font-weight:        var(--anetd-primitive-font-weight-medium);
+  --anetd-button-height:             var(--anetd-height-input);
+  --anetd-button-height-sm:          var(--anetd-height-input-sm);
+  --anetd-button-height-lg:          var(--anetd-height-input-lg);
+  --anetd-button-padding-x:          var(--anetd-primitive-space-3);
+  --anetd-button-padding-x-sm:       var(--anetd-primitive-space-2);
+  --anetd-button-padding-x-lg:       var(--anetd-primitive-space-4);
+  --anetd-button-radius:             var(--anetd-primitive-radius-md);
+  --anetd-button-gap:                var(--anetd-primitive-space-1-5);
+
+  --anetd-button-primary-bg:         var(--anetd-color-brand-default);
+  --anetd-button-primary-bg-hover:   var(--anetd-color-brand-hover);
+  --anetd-button-primary-bg-active:  var(--anetd-color-brand-active);
+  --anetd-button-primary-text:       var(--anetd-color-text-on-brand);
+  --anetd-button-primary-border:     transparent;
+
+  --anetd-button-secondary-bg:       var(--anetd-color-bg-base);
+  --anetd-button-secondary-bg-hover: var(--anetd-color-bg-subtle);
+  --anetd-button-secondary-text:     var(--anetd-color-text-primary);
+  --anetd-button-secondary-border:   var(--anetd-color-border-default);
+
+  --anetd-button-ghost-bg:           transparent;
+  --anetd-button-ghost-bg-hover:     var(--anetd-color-hover-overlay);
+  --anetd-button-ghost-text:         var(--anetd-color-text-primary);
+  --anetd-button-ghost-border:       transparent;
+
+  --anetd-button-danger-bg:          var(--anetd-color-danger-default);
+  --anetd-button-danger-bg-hover:    var(--anetd-color-danger-hover);
+  --anetd-button-danger-text:        var(--anetd-color-text-on-brand);
+
+  --anetd-button-link-bg:            transparent;
+  --anetd-button-link-text:          var(--anetd-color-text-link);
+
+  /* ─── Input / TextInput / Select ─────────────────────── */
+  --anetd-input-height:              var(--anetd-height-input);
+  --anetd-input-height-sm:           var(--anetd-height-input-sm);
+  --anetd-input-height-lg:           var(--anetd-height-input-lg);
+  --anetd-input-font-size:           var(--anetd-font-size-base);
+  --anetd-input-padding-x:           var(--anetd-primitive-space-2-5);
+  --anetd-input-radius:              var(--anetd-primitive-radius-md);
+  --anetd-input-bg:                  var(--anetd-color-bg-base);
+  --anetd-input-bg-disabled:         var(--anetd-color-bg-muted);
+  --anetd-input-border:              var(--anetd-color-border-default);
+  --anetd-input-border-focus:        var(--anetd-color-border-focus);
+  --anetd-input-border-error:        var(--anetd-color-danger-default);
+  --anetd-input-text:                var(--anetd-color-text-primary);
+  --anetd-input-placeholder:         var(--anetd-color-text-tertiary);
+  --anetd-input-shadow-focus:        0 0 0 3px color-mix(in srgb, var(--anetd-color-focus-ring) 20%, transparent);
+  --anetd-input-shadow-error:        0 0 0 3px color-mix(in srgb, var(--anetd-color-danger-default) 20%, transparent);
+
+  /* ─── Card ───────────────────────────────────────────── */
+  --anetd-card-bg:                   var(--anetd-color-bg-base);
+  --anetd-card-border:               var(--anetd-color-border-default);
+  --anetd-card-radius:               var(--anetd-primitive-radius-lg);
+  --anetd-card-shadow:               var(--anetd-primitive-shadow-sm);
+  --anetd-card-padding:              var(--anetd-primitive-space-4);
+
+  /* ─── Modal ──────────────────────────────────────────── */
+  --anetd-modal-max-width:           42rem;
+  --anetd-modal-max-width-sm:        28rem;
+  --anetd-modal-max-width-lg:        56rem;
+  --anetd-modal-max-width-xl:        72rem;
+  --anetd-modal-bg:                  var(--anetd-color-bg-overlay);
+  --anetd-modal-border:              var(--anetd-color-border-default);
+  --anetd-modal-radius:              var(--anetd-primitive-radius-xl);
+  --anetd-modal-shadow:              var(--anetd-primitive-shadow-xl);
+  --anetd-modal-header-height:       3.5rem;
+  --anetd-modal-footer-height:       3.5rem;
+  --anetd-modal-padding:             var(--anetd-primitive-space-4);
+
+  /* ─── Navbar ─────────────────────────────────────────── */
+  --anetd-navbar-height:             3.5rem;
+  --anetd-navbar-bg:                 var(--anetd-color-bg-base);
+  --anetd-navbar-border:             var(--anetd-color-border-default);
+  --anetd-navbar-shadow:             var(--anetd-primitive-shadow-xs);
+  --anetd-navbar-padding-x:          var(--anetd-primitive-space-4);
+
+  /* ─── Sidebar ────────────────────────────────────────── */
+  --anetd-sidebar-width:             15rem;
+  --anetd-sidebar-width-collapsed:   3.5rem;
+  --anetd-sidebar-bg:                var(--anetd-color-bg-subtle);
+  --anetd-sidebar-border:            var(--anetd-color-border-default);
+
+  /* ─── Table ──────────────────────────────────────────── */
+  --anetd-table-row-height:          2.25rem;
+  --anetd-table-header-bg:           var(--anetd-color-bg-subtle);
+  --anetd-table-row-bg:              var(--anetd-color-bg-base);
+  --anetd-table-row-bg-alt:          var(--anetd-color-bg-subtle);
+  --anetd-table-row-bg-hover:        var(--anetd-color-brand-subtle);
+  --anetd-table-row-bg-selected:     var(--anetd-color-brand-subtle);
+  --anetd-table-border:              var(--anetd-color-border-default);
+  --anetd-table-header-text:         var(--anetd-color-text-secondary);
+  --anetd-table-header-font-weight:  var(--anetd-primitive-font-weight-semibold);
+
+  /* ─── Badge ──────────────────────────────────────────── */
+  --anetd-badge-font-size:           0.6875rem;
+  --anetd-badge-font-weight:         var(--anetd-primitive-font-weight-semibold);
+  --anetd-badge-radius:              var(--anetd-primitive-radius-full);
+  --anetd-badge-padding-x:           var(--anetd-primitive-space-1-5);
+  --anetd-badge-padding-y:           2px;
+  --anetd-badge-height:              1.25rem;
+
+  /* ─── Toast ──────────────────────────────────────────── */
+  --anetd-toast-width:               22rem;
+  --anetd-toast-radius:              var(--anetd-primitive-radius-lg);
+  --anetd-toast-shadow:              var(--anetd-primitive-shadow-lg);
+  --anetd-toast-padding:             var(--anetd-primitive-space-3);
+
+  /* ─── Tooltip ────────────────────────────────────────── */
+  --anetd-tooltip-font-size:         0.75rem;
+  --anetd-tooltip-radius:            var(--anetd-primitive-radius-md);
+  --anetd-tooltip-bg:                var(--anetd-color-bg-inverse);
+  --anetd-tooltip-text:              var(--anetd-color-text-inverse);
+  --anetd-tooltip-padding-x:         var(--anetd-primitive-space-2);
+  --anetd-tooltip-padding-y:         var(--anetd-primitive-space-1);
+  --anetd-tooltip-max-width:         14rem;
+
+  /* ─── Progress Bar ───────────────────────────────────── */
+  --anetd-progress-height:           0.5rem;
+  --anetd-progress-height-sm:        0.25rem;
+  --anetd-progress-height-lg:        0.75rem;
+  --anetd-progress-radius:           var(--anetd-primitive-radius-full);
+  --anetd-progress-bg:               var(--anetd-color-bg-emphasis);
+  --anetd-progress-fill:             var(--anetd-color-brand-default);
+
+  /* ─── Avatar ─────────────────────────────────────────── */
+  --anetd-avatar-size:               2rem;
+  --anetd-avatar-size-sm:            1.5rem;
+  --anetd-avatar-size-lg:            2.5rem;
+  --anetd-avatar-size-xl:            3rem;
+  --anetd-avatar-radius:             var(--anetd-primitive-radius-full);
+  --anetd-avatar-bg:                 var(--anetd-color-brand-muted);
+  --anetd-avatar-text:               var(--anetd-color-brand-default);
+
+  /* ─── Tag / Chip ─────────────────────────────────────── */
+  --anetd-tag-font-size:             0.75rem;
+  --anetd-tag-height:                1.5rem;
+  --anetd-tag-radius:                var(--anetd-primitive-radius-full);
+  --anetd-tag-padding-x:             var(--anetd-primitive-space-2);
+
+  /* ─── Tabs ───────────────────────────────────────────── */
+  --anetd-tabs-border:               var(--anetd-color-border-default);
+  --anetd-tabs-active-border:        var(--anetd-color-brand-default);
+  --anetd-tabs-active-text:          var(--anetd-color-brand-default);
+  --anetd-tabs-height:               2.5rem;
+
+  /* ─── Divider ────────────────────────────────────────── */
+  --anetd-divider-color:             var(--anetd-color-border-default);
+  --anetd-divider-thickness:         1px;
+
+  /* ─── Skeleton ───────────────────────────────────────── */
+  --anetd-skeleton-base:             var(--anetd-color-bg-muted);
+  --anetd-skeleton-shine:            var(--anetd-color-bg-subtle);
+  --anetd-skeleton-radius:           var(--anetd-primitive-radius-md);
+}

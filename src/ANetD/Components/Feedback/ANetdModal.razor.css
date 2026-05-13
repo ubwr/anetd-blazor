@@ -1,0 +1,38 @@
+.anetd-modal-backdrop {
+    position: fixed; inset: 0; background: var(--anetd-color-backdrop);
+    z-index: var(--anetd-primitive-z-backdrop);
+    animation: anetd-fade-in var(--anetd-primitive-duration-slow) var(--anetd-primitive-ease-default);
+}
+.anetd-modal {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(var(--anetd-modal-max-width), calc(100vw - 2rem));
+    max-height: calc(100vh - 2rem);
+    background: var(--anetd-modal-bg); border: 1px solid var(--anetd-modal-border);
+    border-radius: var(--anetd-modal-radius); box-shadow: var(--anetd-modal-shadow);
+    z-index: var(--anetd-primitive-z-modal);
+    display: flex; flex-direction: column; overflow: hidden;
+    animation: anetd-modal-in var(--anetd-primitive-duration-slow) var(--anetd-primitive-ease-out);
+}
+.anetd-modal--sm { --anetd-modal-max-width: var(--anetd-modal-max-width-sm); }
+.anetd-modal--lg { --anetd-modal-max-width: var(--anetd-modal-max-width-lg); }
+.anetd-modal__header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 var(--anetd-modal-padding); height: var(--anetd-modal-header-height);
+    border-bottom: 1px solid var(--anetd-modal-border); flex-shrink: 0;
+}
+.anetd-modal__title { font-size: var(--anetd-primitive-font-size-lg); font-weight: var(--anetd-primitive-font-weight-semibold); color: var(--anetd-color-text-primary); margin: 0; }
+.anetd-modal__close {
+    display: flex; align-items: center; justify-content: center;
+    width: 2rem; height: 2rem; border: none; background: transparent;
+    color: var(--anetd-color-text-secondary); border-radius: var(--anetd-primitive-radius-md); cursor: pointer;
+    transition: background var(--anetd-primitive-duration-base), color var(--anetd-primitive-duration-base);
+}
+.anetd-modal__close:hover { background: var(--anetd-color-hover-overlay); color: var(--anetd-color-text-primary); }
+.anetd-modal__body { flex: 1; overflow-y: auto; padding: var(--anetd-modal-padding); }
+.anetd-modal__footer {
+    display: flex; align-items: center; justify-content: flex-end;
+    gap: var(--anetd-primitive-space-2); padding: 0 var(--anetd-modal-padding);
+    height: var(--anetd-modal-footer-height); border-top: 1px solid var(--anetd-modal-border); flex-shrink: 0;
+}
+@keyframes anetd-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes anetd-modal-in { from { opacity: 0; transform: translate(-50%, calc(-50% - 1rem)); } to { opacity: 1; transform: translate(-50%, -50%); } }

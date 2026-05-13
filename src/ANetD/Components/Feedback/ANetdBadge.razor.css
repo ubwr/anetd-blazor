@@ -1,0 +1,15 @@
+.anetd-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: var(--anetd-badge-height); min-width: var(--anetd-badge-height);
+    padding: var(--anetd-badge-padding-y) var(--anetd-badge-padding-x);
+    font-size: var(--anetd-badge-font-size); font-weight: var(--anetd-badge-font-weight);
+    border-radius: var(--anetd-badge-radius); white-space: nowrap; line-height: 1;
+}
+.anetd-badge--default   { background: var(--anetd-color-bg-emphasis);  color: var(--anetd-color-text-secondary); }
+.anetd-badge--primary   { background: var(--anetd-color-brand-muted);   color: var(--anetd-color-brand-default); }
+.anetd-badge--success   { background: var(--anetd-color-success-muted); color: var(--anetd-color-success-default); }
+.anetd-badge--warning   { background: var(--anetd-color-warning-muted); color: var(--anetd-color-warning-default); }
+.anetd-badge--danger    { background: var(--anetd-color-danger-muted);  color: var(--anetd-color-danger-default); }
+.anetd-badge--info      { background: var(--anetd-color-info-muted);    color: var(--anetd-color-info-default); }
+.anetd-badge--secondary { background: var(--anetd-color-bg-muted);      color: var(--anetd-color-text-secondary); }
+.anetd-badge--dot { width: 0.5rem; height: 0.5rem; min-width: 0; padding: 0; border-radius: 50%; }

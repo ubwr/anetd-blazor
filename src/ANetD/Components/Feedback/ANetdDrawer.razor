@@ -1,0 +1,68 @@
+@namespace ANetD.Components.Feedback
+@inject IANetDJSInterop JSInterop
+@implements IAsyncDisposable
+
+@if (IsOpen)
+{
+    <div class="anetd-modal-backdrop" @onclick="HandleBackdropClick" aria-hidden="true"></div>
+}
+<div class="@DrawerClass" role="dialog" aria-modal="true"
+     aria-hidden="@(!IsOpen)" aria-labelledby="@_titleId"
+     @ref="_drawerEl" @attributes="AdditionalAttributes">
+    <div class="anetd-drawer__header">
+        <h2 id="@_titleId" class="anetd-modal__title">@Title</h2>
+        <button type="button" class="anetd-modal__close" aria-label="Close" @onclick="CloseAsync">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+    </div>
+    <div class="anetd-drawer__body">@ChildContent</div>
+    @if (Footer is not null)
+    {
+        <div class="anetd-drawer__footer">@Footer</div>
+    }
+</div>
+
+@code {
+    private readonly string _titleId = $"anetd-drawer-{Guid.NewGuid():N}";
+    private readonly string _trapId = $"anetd-drawer-trap-{Guid.NewGuid():N}";
+    private ElementReference _drawerEl;
+    private bool _wasOpen;
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? Footer { get; set; }
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public DrawerPlacement Placement { get; set; } = DrawerPlacement.Right;
+    [Parameter] public bool CloseOnBackdrop { get; set; } = true;
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string DrawerClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-drawer")
+        .Add(Placement switch { DrawerPlacement.Left => "anetd-drawer--left", DrawerPlacement.Top => "anetd-drawer--top", DrawerPlacement.Bottom => "anetd-drawer--bottom", _ => "anetd-drawer--right" })
+        .AddIf("anetd-drawer--open", IsOpen)
+        .Add(Class).Build();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (IsOpen && !_wasOpen) { _wasOpen = true; await JSInterop.LockBodyScrollAsync(); }
+        else if (!IsOpen && _wasOpen) { _wasOpen = false; await JSInterop.UnlockBodyScrollAsync(); await JSInterop.ReleaseFocusTrapAsync(_trapId); }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (IsOpen) await JSInterop.TrapFocusAsync(_trapId, _drawerEl);
+    }
+
+    private async Task CloseAsync() { await IsOpenChanged.InvokeAsync(false); await OnClose.InvokeAsync(); }
+    private async Task HandleBackdropClick() { if (CloseOnBackdrop) await CloseAsync(); }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_wasOpen) { await JSInterop.UnlockBodyScrollAsync(); await JSInterop.ReleaseFocusTrapAsync(_trapId); }
+    }
+}

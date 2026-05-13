@@ -1,0 +1,26 @@
+@namespace ANetD.Components.Layout
+
+@if (Vertical)
+{
+    <div class="@CssClass" style="@StyleValue" role="separator" aria-orientation="vertical" @attributes="AdditionalAttributes"></div>
+}
+else
+{
+    <hr class="@CssClass" style="@StyleValue" @attributes="AdditionalAttributes" />
+}
+
+@code {
+    [Parameter] public bool Vertical { get; set; }
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-divider")
+        .AddIf("anetd-divider--vertical", Vertical)
+        .Add(Class)
+        .Build();
+
+    private string? StyleValue => Style;
+}

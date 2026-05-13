@@ -1,0 +1,24 @@
+@namespace ANetD.Components.Typography
+
+<svg class="@CssClass" style="@Style"
+     width="@Size" height="@Size" viewBox="@ViewBox"
+     fill="none" xmlns="http://www.w3.org/2000/svg"
+     aria-hidden="@(AriaLabel == null ? "true" : null)"
+     aria-label="@AriaLabel"
+     role="@(AriaLabel != null ? "img" : null)"
+     focusable="false"
+     @attributes="AdditionalAttributes">
+    @ChildContent
+</svg>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public int Size { get; set; } = 16;
+    [Parameter] public string ViewBox { get; set; } = "0 0 16 16";
+    [Parameter] public string? AriaLabel { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder().Add("anetd-icon").Add(Class).Build();
+}

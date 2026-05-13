@@ -1,0 +1,50 @@
+@namespace ANetD.Components.Feedback
+
+<div class="@CssClass" role="alert" @attributes="AdditionalAttributes">
+    <span class="anetd-alert__icon" aria-hidden="true">
+        @if (Variant == AlertVariant.Success) {
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        } else if (Variant == AlertVariant.Danger) {
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 5V8M8 11H8.01M14 8A6 6 0 1 1 2 8a6 6 0 0 1 12 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        } else if (Variant == AlertVariant.Warning) {
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 6V9M8 11.5H8.01M2.5 13H13.5L8 3L2.5 13Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        } else {
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 7V11M8 5H8.01M14 8A6 6 0 1 1 2 8a6 6 0 0 1 12 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        }
+    </span>
+    <div class="anetd-alert__content">
+        @if (!string.IsNullOrEmpty(Title))
+        {
+            <div class="anetd-alert__title">@Title</div>
+        }
+        @if (ChildContent is not null)
+        {
+            <div class="anetd-alert__body">@ChildContent</div>
+        }
+    </div>
+    @if (Dismissible)
+    {
+        <button type="button" class="anetd-alert__dismiss" aria-label="Dismiss" @onclick="() => OnDismiss.InvokeAsync()">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M10.5 3.5L3.5 10.5M3.5 3.5L10.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+    }
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public AlertVariant Variant { get; set; } = AlertVariant.Info;
+    [Parameter] public bool Dismissible { get; set; }
+    [Parameter] public EventCallback OnDismiss { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-alert")
+        .Add(Variant switch { AlertVariant.Success => "anetd-alert--success", AlertVariant.Warning => "anetd-alert--warning", AlertVariant.Danger => "anetd-alert--danger", _ => "anetd-alert--info" })
+        .Add(Class).Build();
+
+    private async Task DismissAlert() => await OnDismiss.InvokeAsync();
+}

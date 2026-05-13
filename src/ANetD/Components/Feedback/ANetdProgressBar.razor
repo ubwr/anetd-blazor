@@ -1,0 +1,32 @@
+@namespace ANetD.Components.Feedback
+
+<div class="@CssClass" role="progressbar"
+     aria-valuenow="@(Indeterminate ? null : Value)"
+     aria-valuemin="0" aria-valuemax="@Max" aria-label="@Label"
+     @attributes="AdditionalAttributes">
+    @if (!Indeterminate)
+    {
+        <div class="anetd-progress__fill" style="width: @(Math.Min(100, Math.Max(0, Value / Max * 100)).ToString("F1", System.Globalization.CultureInfo.InvariantCulture))%"></div>
+    }
+    else
+    {
+        <div class="anetd-progress__fill anetd-progress__fill--indeterminate"></div>
+    }
+</div>
+
+@code {
+    [Parameter] public double Value { get; set; }
+    [Parameter] public double Max { get; set; } = 100;
+    [Parameter] public bool Indeterminate { get; set; }
+    [Parameter] public ComponentColor Color { get; set; } = ComponentColor.Primary;
+    [Parameter] public ComponentSize Size { get; set; } = ComponentSize.Md;
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-progress")
+        .Add(Size switch { ComponentSize.Sm => "anetd-progress--sm", ComponentSize.Lg => "anetd-progress--lg", _ => "" })
+        .Add(Color switch { ComponentColor.Success => "anetd-progress--success", ComponentColor.Warning => "anetd-progress--warning", ComponentColor.Danger => "anetd-progress--danger", _ => "" })
+        .Add(Class).Build();
+}

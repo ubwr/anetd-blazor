@@ -1,0 +1,14 @@
+.anetd-pagination { display: flex; align-items: center; gap: var(--anetd-primitive-space-1); }
+.anetd-pagination__btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 2rem; height: 2rem; padding: 0 var(--anetd-primitive-space-1-5);
+    font-family: var(--anetd-font-family); font-size: var(--anetd-primitive-font-size-sm);
+    font-weight: var(--anetd-primitive-font-weight-medium); color: var(--anetd-color-text-secondary);
+    background: transparent; border: 1px solid transparent;
+    border-radius: var(--anetd-primitive-radius-md); cursor: pointer;
+    transition: background var(--anetd-primitive-duration-base), border-color var(--anetd-primitive-duration-base);
+}
+.anetd-pagination__btn:hover:not(:disabled):not(.anetd-pagination__btn--active) { background: var(--anetd-color-bg-muted); border-color: var(--anetd-color-border-default); }
+.anetd-pagination__btn--active { background: var(--anetd-color-brand-default); color: white; border-color: var(--anetd-color-brand-default); }
+.anetd-pagination__btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.anetd-pagination__ellipsis { display: flex; align-items: center; padding: 0 var(--anetd-primitive-space-1); color: var(--anetd-color-text-tertiary); }

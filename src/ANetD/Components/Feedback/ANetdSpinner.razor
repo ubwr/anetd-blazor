@@ -1,0 +1,24 @@
+@namespace ANetD.Components.Feedback
+
+<span class="@CssClass" role="status" aria-label="@(Label ?? "Loading...")" @attributes="AdditionalAttributes">
+    <svg class="anetd-spinner__svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" opacity="0.25"/>
+        <path d="M22 12A10 10 0 0 0 12 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <span class="anetd-sr-only">@Label</span>
+    }
+</span>
+
+@code {
+    [Parameter] public ComponentSize Size { get; set; } = ComponentSize.Md;
+    [Parameter] public string? Label { get; set; }
+    [Parameter] public string? Class { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private string CssClass => new ANetD.Utilities.CssBuilder()
+        .Add("anetd-spinner")
+        .Add(Size switch { ComponentSize.Sm => "anetd-spinner--sm", ComponentSize.Lg => "anetd-spinner--lg", _ => "" })
+        .Add(Class).Build();
+}

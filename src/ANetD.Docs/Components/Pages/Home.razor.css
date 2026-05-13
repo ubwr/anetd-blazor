@@ -1,0 +1,27 @@
+.docs-hero {
+    padding: var(--anetd-primitive-space-12) 0 var(--anetd-primitive-space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--anetd-primitive-space-4);
+}
+.docs-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--anetd-primitive-font-weight-bold);
+    line-height: var(--anetd-primitive-line-height-tight);
+    letter-spacing: -0.025em;
+    margin: 0;
+}
+.docs-hero__accent { color: var(--anetd-color-brand-default); }
+.docs-hero__subtitle {
+    font-size: var(--anetd-primitive-font-size-xl);
+    color: var(--anetd-color-text-secondary);
+    max-width: 36rem;
+    line-height: var(--anetd-primitive-line-height-relaxed);
+    margin: 0;
+}
+.docs-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: var(--anetd-primitive-space-4);
+    margin-top: var(--anetd-primitive-space-8);
+}

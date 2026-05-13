@@ -1,0 +1,13 @@
+.anetd-tab {
+    display: inline-flex; align-items: center; gap: var(--anetd-primitive-space-1-5);
+    height: var(--anetd-tabs-height); padding: 0 var(--anetd-primitive-space-3);
+    font-family: var(--anetd-font-family); font-size: var(--anetd-font-size-base);
+    font-weight: var(--anetd-primitive-font-weight-medium); color: var(--anetd-color-text-secondary);
+    background: transparent; border: none; border-bottom: 2px solid transparent;
+    cursor: pointer; transition: color var(--anetd-primitive-duration-base), border-color var(--anetd-primitive-duration-base);
+    margin-bottom: -1px; white-space: nowrap;
+}
+.anetd-tab:hover:not(.anetd-tab--disabled):not(.anetd-tab--active) { color: var(--anetd-color-text-primary); border-bottom-color: var(--anetd-color-border-strong); }
+.anetd-tab--active { color: var(--anetd-tabs-active-text); border-bottom-color: var(--anetd-tabs-active-border); }
+.anetd-tab--disabled { opacity: 0.5; cursor: not-allowed; }
+.anetd-tab__icon { display: flex; align-items: center; width: 1em; height: 1em; }

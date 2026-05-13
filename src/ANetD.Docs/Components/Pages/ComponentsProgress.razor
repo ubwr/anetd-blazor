@@ -1,0 +1,20 @@
+@page "/docs/components/progress"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Progress — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Progress Bar</ANetdText>
+<ANetdText As="p">Shows completion progress of a task or operation.</ANetdText>
+
+<ANetdText As="h2">Variants</ANetdText>
+<ANetdCard>
+    <ChildContent>
+        <ANetdStack Gap="var(--anetd-primitive-space-3)">
+            <ANetdProgressBar Value="65" Label="Default progress" />
+            <ANetdProgressBar Value="40" Color="ComponentColor.Success" Label="Success" />
+            <ANetdProgressBar Value="80" Color="ComponentColor.Warning" Label="Warning" />
+            <ANetdProgressBar Value="25" Color="ComponentColor.Danger" Label="Danger" />
+            <ANetdProgressBar Indeterminate="true" Label="Loading..." />
+        </ANetdStack>
+    </ChildContent>
+</ANetdCard>

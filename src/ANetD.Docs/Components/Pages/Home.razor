@@ -1,0 +1,55 @@
+@page "/"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>ANetD — Open-Source Enterprise Blazor Components</PageTitle>
+
+<div class="docs-hero">
+    <ANetdBadge Color="ComponentColor.Primary">v0.1-preview</ANetdBadge>
+    <ANetdText As="h1" Class="docs-hero__title">
+        Enterprise Blazor components.<br />
+        <span class="docs-hero__accent">Free and open source.</span>
+    </ANetdText>
+    <ANetdText As="p" Class="docs-hero__subtitle">
+        ANetD is a fully themeable, WCAG 2.1 AA compliant Blazor component library
+        built for enterprise developers who refuse to pay commercial licensing fees.
+    </ANetdText>
+    <ANetdStack Direction="StackDirection.Horizontal" Gap="var(--anetd-primitive-space-3)">
+        <ANetdButton Variant="ButtonVariant.Primary" Size="ComponentSize.Lg">
+            Get Started
+        </ANetdButton>
+        <ANetdButton Variant="ButtonVariant.Secondary" Size="ComponentSize.Lg">
+            View on GitHub
+        </ANetdButton>
+    </ANetdStack>
+</div>
+
+<div class="docs-feature-grid">
+    <ANetdCard>
+        <Header><span>🎨 First-class theming</span></Header>
+        <ChildContent>
+            Three-layer CSS token system. Override any semantic token to create a fully custom
+            branded design system — no source code fork required.
+        </ChildContent>
+    </ANetdCard>
+    <ANetdCard>
+        <Header><span>♿ Accessible by default</span></Header>
+        <ChildContent>
+            WCAG 2.1 AA target. Full keyboard navigation, ARIA roles, focus management in
+            overlays, and color contrast verified on all default themes.
+        </ChildContent>
+    </ANetdCard>
+    <ANetdCard>
+        <Header><span>⚡ Blazor Server optimized</span></Header>
+        <ChildContent>
+            Primary target is Blazor Server. All JS interop is abstracted behind
+            <code>IANetDJSInterop</code>, making components fully testable with bUnit.
+        </ChildContent>
+    </ANetdCard>
+    <ANetdCard>
+        <Header><span>📦 MIT Licensed</span></Header>
+        <ChildContent>
+            No per-developer licensing, no commercial restrictions. Use it in any project,
+            commercial or otherwise.
+        </ChildContent>
+    </ANetdCard>
+</div>

@@ -1,0 +1,5 @@
+.anetd-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--anetd-primitive-space-4);
+}
