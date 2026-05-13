@@ -1,0 +1,22 @@
+/* ANetD Docs — site-specific styles */
+
+.docs-code {
+    margin: 0;
+    padding: var(--anetd-primitive-space-4);
+    font-family: var(--anetd-font-family-mono);
+    font-size: var(--anetd-primitive-font-size-sm);
+    line-height: var(--anetd-primitive-line-height-relaxed);
+    color: var(--anetd-color-text-primary);
+    background: var(--anetd-color-bg-subtle);
+    overflow-x: auto;
+    tab-size: 2;
+}
+
+.docs-content h1 { margin: 0 0 var(--anetd-primitive-space-4); }
+.docs-content h2 { margin: var(--anetd-primitive-space-8) 0 var(--anetd-primitive-space-3); padding-bottom: var(--anetd-primitive-space-2); border-bottom: 1px solid var(--anetd-color-border-default); }
+.docs-content p  { margin: 0 0 var(--anetd-primitive-space-3); line-height: var(--anetd-primitive-line-height-relaxed); }
+.docs-content code { font-family: var(--anetd-font-family-mono); font-size: 0.875em; background: var(--anetd-color-bg-muted); padding: 1px 5px; border-radius: var(--anetd-primitive-radius-sm); }
+
+@media (max-width: 768px) {
+    .docs-content { padding: var(--anetd-primitive-space-4); }
+}

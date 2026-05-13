@@ -1,0 +1,61 @@
+@page "/docs/theming"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Theming — ANetD</PageTitle>
+
+<ANetdText As="h1">Theming</ANetdText>
+<ANetdText As="p">
+    ANetD uses a three-layer CSS custom property system that makes theming both powerful and straightforward.
+</ANetdText>
+
+<ANetdText As="h2">Token Layers</ANetdText>
+<ANetdStack Gap="var(--anetd-primitive-space-3)">
+    <ANetdCard>
+        <Header><span>Layer 1 — Primitive Tokens</span></Header>
+        <ChildContent>
+            Raw values: color scales (gray 0–950, brand 50–950, red, yellow, green, blue),
+            typography, spacing, radii, shadows, and transitions. Never used directly in component styles.
+            <br/><br/>
+            Example: <code>--anetd-primitive-brand-600: #5c01e5</code>
+        </ChildContent>
+    </ANetdCard>
+    <ANetdCard>
+        <Header><span>Layer 2 — Semantic Tokens</span></Header>
+        <ChildContent>
+            Give meaning to primitives. <strong>This is the layer you override to theme the library.</strong>
+            Applied at <code>:root</code> (light theme) and <code>[data-theme="dark"]</code>.
+            <br/><br/>
+            Example: <code>--anetd-color-brand-default → var(--anetd-primitive-brand-600)</code>
+        </ChildContent>
+    </ANetdCard>
+    <ANetdCard>
+        <Header><span>Layer 3 — Component Tokens</span></Header>
+        <ChildContent>
+            Per-component override points. Reference semantic tokens. Use these for targeted
+            component customization without touching global styles.
+            <br/><br/>
+            Example: <code>--anetd-button-primary-bg → var(--anetd-color-brand-default)</code>
+        </ChildContent>
+    </ANetdCard>
+</ANetdStack>
+
+<ANetdText As="h2">Creating a Custom Theme</ANetdText>
+<ANetdText As="p">Override semantic tokens in your own CSS:</ANetdText>
+<ANetdCard NoPadding="true">
+    <ChildContent>
+        <pre class="docs-code"><code>/* my-theme.css */
+:root {
+  --anetd-color-brand-default:  #0ea5e9;  /* sky blue */
+  --anetd-color-brand-hover:    #38bdf8;
+  --anetd-color-brand-active:   #0284c7;
+  --anetd-color-brand-subtle:   #f0f9ff;
+}</code></pre>
+    </ChildContent>
+</ANetdCard>
+
+<ANetdText As="h2">Dark Mode</ANetdText>
+<ANetdText As="p">
+    Apply <code>data-theme="dark"</code> to any element to switch to dark mode.
+    Scoped to that subtree, no JavaScript required to switch (though the optional
+    <code>ThemeService</code> makes it easy from C#).
+</ANetdText>
