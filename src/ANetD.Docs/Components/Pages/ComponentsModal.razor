@@ -7,11 +7,19 @@
 <ANetdText As="p">A dialog overlay for focused user interactions.</ANetdText>
 
 <ANetdText As="h2">Basic</ANetdText>
-<ANetdCard>
+<DocsDemoBlock Code='@(@"<ANetdButton Variant=""ButtonVariant.Primary"" OnClick=""@(() => _open = true)"">Open Modal</ANetdButton>
+
+<ANetdModal Title=""Confirm Action"" @bind-IsOpen=""_open"" Size=""ComponentSize.Md"">
     <ChildContent>
-        <ANetdButton Variant="ButtonVariant.Primary" OnClick="@(() => _open = true)">Open Modal</ANetdButton>
+        <ANetdText As=""p"">Are you sure you want to proceed?</ANetdText>
     </ChildContent>
-</ANetdCard>
+    <Footer>
+        <ANetdButton Variant=""ButtonVariant.Secondary"" OnClick=""@(() => _open = false)"">Cancel</ANetdButton>
+        <ANetdButton Variant=""ButtonVariant.Danger"" OnClick=""@(() => _open = false)"">Delete</ANetdButton>
+    </Footer>
+</ANetdModal>")'>
+    <ANetdButton Variant="ButtonVariant.Primary" OnClick="@(() => _open = true)">Open Modal</ANetdButton>
+</DocsDemoBlock>
 
 <ANetdModal Title="Confirm Action"
             @bind-IsOpen="_open"
@@ -25,6 +33,36 @@
     </Footer>
 </ANetdModal>
 
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
 @code {
     private bool _open;
+
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("IsOpen",       "bool",             "false",  "Controls visibility; supports two-way binding"),
+        new("Title",        "string?",          "null",   "Modal header title text"),
+        new("Size",         "ComponentSize",    "Md",     "Width preset: Sm, Md, Lg, Xl"),
+        new("Dismissible",  "bool",             "true",   "Close on backdrop click or Escape key"),
+        new("ChildContent", "RenderFragment?",  "null",   "Modal body content"),
+        new("Footer",       "RenderFragment?",  "null",   "Footer slot, typically holds action buttons"),
+    };
 }

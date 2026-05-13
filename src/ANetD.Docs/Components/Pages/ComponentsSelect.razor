@@ -1,0 +1,57 @@
+@page "/docs/components/select"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Select — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Select</ANetdText>
+<ANetdText As="p">Dropdown field for selecting a value from a list of options.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdSelect Label=""Framework"" @bind-Value=""_selected"">
+    <option value="""">Choose...</option>
+    <option value=""blazor"">Blazor</option>
+    <option value=""react"">React</option>
+    <option value=""angular"">Angular</option>
+</ANetdSelect>")'>
+    <ANetdSelect Label="Framework" @bind-Value="_selected">
+        <option value="">Choose...</option>
+        <option value="blazor">Blazor</option>
+        <option value="react">React</option>
+        <option value="angular">Angular</option>
+    </ANetdSelect>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    private string _selected = "";
+
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Value",        "string",          "\"\"",  "Bound selected value"),
+        new("Label",        "string?",         "null",  "Label displayed above the select"),
+        new("Disabled",     "bool",            "false", "Disables the select"),
+        new("Error",        "string?",         "null",  "Validation error message shown below the select"),
+        new("Size",         "ComponentSize",   "Md",    "Controls height and font size"),
+        new("FullWidth",    "bool",            "false", "Stretches select to fill its container"),
+        new("ChildContent", "RenderFragment?", "null",  "Option elements rendered inside the select"),
+    };
+}

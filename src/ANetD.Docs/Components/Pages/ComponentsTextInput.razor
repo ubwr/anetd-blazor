@@ -1,0 +1,57 @@
+@page "/docs/components/textinput"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>TextInput — ANetD Components</PageTitle>
+
+<ANetdText As="h1">TextInput</ANetdText>
+<ANetdText As="p">Single-line text field with label, placeholder, error state, and size variants.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Gap=""var(--anetd-primitive-space-3)"">
+    <ANetdTextInput Label=""Username"" Placeholder=""Enter username"" @bind-Value=""_value"" />
+    <ANetdTextInput Label=""Disabled"" Value=""disabled value"" Disabled=""true"" />
+    <ANetdTextInput Label=""Error state"" @bind-Value=""_value"" Error=""This field is required"" />
+</ANetdStack>")'>
+    <ANetdStack Gap="var(--anetd-primitive-space-3)">
+        <ANetdTextInput Label="Username" Placeholder="Enter username" @bind-Value="_value" />
+        <ANetdTextInput Label="Disabled" Value="disabled value" Disabled="true" />
+        <ANetdTextInput Label="Error state" @bind-Value="_value" Error="This field is required" />
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    private string _value = "";
+
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Value",       "string",        "\"\"",     "Bound text value"),
+        new("Label",       "string?",       "null",     "Label displayed above the input"),
+        new("Placeholder", "string?",       "null",     "Placeholder text shown when empty"),
+        new("Disabled",    "bool",          "false",    "Disables the input"),
+        new("ReadOnly",    "bool",          "false",    "Makes the input read-only"),
+        new("Error",       "string?",       "null",     "Validation error message shown below the input"),
+        new("Size",        "ComponentSize", "Md",       "Controls height and font size"),
+        new("Type",        "string",        "\"text\"", "HTML input type attribute"),
+        new("FullWidth",   "bool",          "false",    "Stretches input to fill its container"),
+    };
+}

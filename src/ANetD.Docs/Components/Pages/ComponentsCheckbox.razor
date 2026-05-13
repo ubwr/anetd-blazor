@@ -1,0 +1,52 @@
+@page "/docs/components/checkbox"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Checkbox — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Checkbox</ANetdText>
+<ANetdText As="p">Binary checked/unchecked control with label.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Gap=""var(--anetd-primitive-space-2)"">
+    <ANetdCheckbox Label=""Accept terms and conditions"" @bind-Value=""_checked"" />
+    <ANetdCheckbox Label=""Disabled unchecked"" Disabled=""true"" />
+    <ANetdCheckbox Label=""Disabled checked"" Value=""true"" Disabled=""true"" />
+</ANetdStack>")'>
+    <ANetdStack Gap="var(--anetd-primitive-space-2)">
+        <ANetdCheckbox Label="Accept terms and conditions" @bind-Value="_checked" />
+        <ANetdCheckbox Label="Disabled unchecked" Disabled="true" />
+        <ANetdCheckbox Label="Disabled checked" Value="true" Disabled="true" />
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    private bool _checked = false;
+
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Value",    "bool",    "false", "Bound checked state"),
+        new("Label",    "string?", "null",  "Label displayed next to the checkbox"),
+        new("Disabled", "bool",    "false", "Disables the checkbox"),
+        new("Error",    "string?", "null",  "Validation error message shown below the checkbox"),
+    };
+}

@@ -1,0 +1,49 @@
+@page "/docs/components/spinner"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Spinner — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Spinner</ANetdText>
+<ANetdText As="p">Animated loading indicator.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Direction=""StackDirection.Horizontal"" Gap=""var(--anetd-primitive-space-4)"">
+    <ANetdSpinner Size=""ComponentSize.Sm"" />
+    <ANetdSpinner Size=""ComponentSize.Md"" />
+    <ANetdSpinner Size=""ComponentSize.Lg"" />
+</ANetdStack>")'>
+    <ANetdStack Direction="StackDirection.Horizontal" Gap="var(--anetd-primitive-space-4)">
+        <ANetdSpinner Size="ComponentSize.Sm" />
+        <ANetdSpinner Size="ComponentSize.Md" />
+        <ANetdSpinner Size="ComponentSize.Lg" />
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Size",  "ComponentSize", "Md",            "Controls the diameter of the spinner"),
+        new("Color", "string?",       "null",          "Custom color override (CSS value or token)"),
+        new("Label", "string",        "\"Loading...\"", "Accessible label for screen readers"),
+    };
+}

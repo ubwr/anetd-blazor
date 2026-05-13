@@ -1,0 +1,49 @@
+@page "/docs/components/divider"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Divider — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Divider</ANetdText>
+<ANetdText As="p">Horizontal or vertical rule for separating content sections.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Gap=""var(--anetd-primitive-space-3)"">
+    <ANetdText As=""p"">Section A</ANetdText>
+    <ANetdDivider />
+    <ANetdText As=""p"">Section B</ANetdText>
+</ANetdStack>")'>
+    <ANetdStack Gap="var(--anetd-primitive-space-3)">
+        <ANetdText As="p">Section A</ANetdText>
+        <ANetdDivider />
+        <ANetdText As="p">Section B</ANetdText>
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Vertical", "bool",    "false", "Renders the divider as a vertical line"),
+        new("Label",    "string?", "null",  "Optional centered label text"),
+        new("Class",    "string?", "null",  "Additional CSS class names"),
+    };
+}

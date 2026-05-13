@@ -1,0 +1,52 @@
+@page "/docs/components/card"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Card — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Card</ANetdText>
+<ANetdText As="p">Contained surface for grouping related content with optional header and footer.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdCard>
+    <Header><strong>Card Title</strong></Header>
+    <ChildContent><ANetdText As=""p"">Card body content goes here.</ANetdText></ChildContent>
+    <Footer><ANetdButton Variant=""ButtonVariant.Primary"" Size=""ComponentSize.Sm"">Action</ANetdButton></Footer>
+</ANetdCard>")'>
+    <ANetdCard>
+        <Header><strong>Card Title</strong></Header>
+        <ChildContent><ANetdText As="p">Card body content goes here.</ANetdText></ChildContent>
+        <Footer><ANetdButton Variant="ButtonVariant.Primary" Size="ComponentSize.Sm">Action</ANetdButton></Footer>
+    </ANetdCard>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Header",       "RenderFragment?", "null",  "Optional header slot rendered at the top of the card"),
+        new("ChildContent", "RenderFragment?", "null",  "Main body content of the card"),
+        new("Footer",       "RenderFragment?", "null",  "Optional footer slot rendered at the bottom of the card"),
+        new("NoPadding",    "bool",            "false", "Removes internal padding for full-bleed content (e.g. tables)"),
+        new("Flat",         "bool",            "false", "Removes the border and shadow"),
+        new("Class",        "string?",         "null",  "Additional CSS class names"),
+    };
+}

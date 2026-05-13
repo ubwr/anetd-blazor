@@ -1,0 +1,69 @@
+@page "/docs/components/tabs"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Tabs — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Tabs</ANetdText>
+<ANetdText As="p">Tabbed navigation for switching between content panels.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdTabs>
+    <TabList>
+        <ANetdTab Active=""@(_tab == 0)"" OnClick=""@(() => _tab = 0)"">Overview</ANetdTab>
+        <ANetdTab Active=""@(_tab == 1)"" OnClick=""@(() => _tab = 1)"">Details</ANetdTab>
+        <ANetdTab Active=""@(_tab == 2)"" OnClick=""@(() => _tab = 2)"">Settings</ANetdTab>
+    </TabList>
+    <ChildContent>
+        @if (_tab == 0) { <ANetdText As=""p"">Overview content goes here.</ANetdText> }
+        @if (_tab == 1) { <ANetdText As=""p"">Details content goes here.</ANetdText> }
+        @if (_tab == 2) { <ANetdText As=""p"">Settings content goes here.</ANetdText> }
+    </ChildContent>
+</ANetdTabs>")'>
+    <ANetdTabs>
+        <TabList>
+            <ANetdTab Active="@(_tab == 0)" OnClick="@(() => _tab = 0)">Overview</ANetdTab>
+            <ANetdTab Active="@(_tab == 1)" OnClick="@(() => _tab = 1)">Details</ANetdTab>
+            <ANetdTab Active="@(_tab == 2)" OnClick="@(() => _tab = 2)">Settings</ANetdTab>
+        </TabList>
+        <ChildContent>
+            @if (_tab == 0) { <ANetdText As="p">Overview content goes here.</ANetdText> }
+            @if (_tab == 1) { <ANetdText As="p">Details content goes here.</ANetdText> }
+            @if (_tab == 2) { <ANetdText As="p">Settings content goes here.</ANetdText> }
+        </ChildContent>
+    </ANetdTabs>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    private int _tab = 0;
+
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("ANetdTabs.TabList",      "RenderFragment?", "null",  "Slot for ANetdTab button elements"),
+        new("ANetdTabs.ChildContent", "RenderFragment?", "null",  "Slot for panel content"),
+        new("ANetdTab.Active",        "bool",            "false", "Whether this tab is currently selected"),
+        new("ANetdTab.Disabled",      "bool",            "false", "Prevents clicking this tab"),
+        new("ANetdTab.OnClick",       "EventCallback",   "-",     "Callback fired when the tab is clicked"),
+        new("ANetdTab.Icon",          "RenderFragment?", "null",  "Optional icon shown before the label"),
+        new("ANetdTab.ChildContent",  "RenderFragment?", "null",  "Label content of the tab button"),
+    };
+}

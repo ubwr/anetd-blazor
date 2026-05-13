@@ -1,0 +1,53 @@
+@page "/docs/components/tag"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Tag — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Tag</ANetdText>
+<ANetdText As="p">Removable or static label chip for categorization.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Direction=""StackDirection.Horizontal"" Wrap=""true"" Gap=""var(--anetd-primitive-space-1-5)"">
+    @foreach (var tag in _tags)
+    {
+        <ANetdTag Removable=""true"" OnRemove=""@(() => _tags.Remove(tag))"">@tag</ANetdTag>
+    }
+</ANetdStack>")'>
+    <ANetdStack Direction="StackDirection.Horizontal" Wrap="true" Gap="var(--anetd-primitive-space-1-5)">
+        @foreach (var tag in _tags.ToList())
+        {
+            <ANetdTag Removable="true" OnRemove="@(() => _tags.Remove(tag))">@tag</ANetdTag>
+        }
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    private List<string> _tags = new() { "Blazor", "C#", "UI Library", ".NET 8" };
+
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("OnRemove",     "EventCallback?",  "null",      "If set, shows a remove button; fired when it is clicked"),
+        new("Color",        "ComponentColor",  "Secondary", "Color variant of the tag"),
+        new("ChildContent", "RenderFragment?", "null",      "Label content displayed inside the tag"),
+    };
+}

@@ -1,0 +1,52 @@
+@page "/docs/components/skeleton"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Skeleton — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Skeleton</ANetdText>
+<ANetdText As="p">Placeholder loading animation that mirrors content layout.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Gap=""var(--anetd-primitive-space-2)"" style=""max-width: 320px;"">
+    <ANetdSkeleton Height=""1rem"" />
+    <ANetdSkeleton Height=""1rem"" Width=""75%"" />
+    <ANetdSkeleton Height=""1rem"" Width=""50%"" />
+    <ANetdSkeleton Height=""6rem"" Radius=""var(--anetd-primitive-radius-lg)"" />
+</ANetdStack>")'>
+    <ANetdStack Gap="var(--anetd-primitive-space-2)" style="max-width: 320px;">
+        <ANetdSkeleton Height="1rem" />
+        <ANetdSkeleton Height="1rem" Width="75%" />
+        <ANetdSkeleton Height="1rem" Width="50%" />
+        <ANetdSkeleton Height="6rem" Radius="var(--anetd-primitive-radius-lg)" />
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Width",   "string",  "\"100%\"", "Width of the skeleton block (CSS value)"),
+        new("Height",  "string",  "\"1rem\"", "Height of the skeleton block (CSS value)"),
+        new("Radius",  "string?", "null",     "Border radius override (CSS value)"),
+        new("Animate", "bool",    "true",     "Whether to show the shimmer animation"),
+    };
+}

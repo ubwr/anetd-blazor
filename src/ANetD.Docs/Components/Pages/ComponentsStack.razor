@@ -1,0 +1,52 @@
+@page "/docs/components/stack"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Stack — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Stack</ANetdText>
+<ANetdText As="p">Flex-based layout primitive for arranging children horizontally or vertically with optional gap and wrap.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Direction=""StackDirection.Horizontal"" Gap=""var(--anetd-primitive-space-2)"">
+    <ANetdBadge Color=""ComponentColor.Primary"">Item 1</ANetdBadge>
+    <ANetdBadge Color=""ComponentColor.Secondary"">Item 2</ANetdBadge>
+    <ANetdBadge Color=""ComponentColor.Success"">Item 3</ANetdBadge>
+</ANetdStack>")'>
+    <ANetdStack Direction="StackDirection.Horizontal" Gap="var(--anetd-primitive-space-2)">
+        <ANetdBadge Color="ComponentColor.Primary">Item 1</ANetdBadge>
+        <ANetdBadge Color="ComponentColor.Secondary">Item 2</ANetdBadge>
+        <ANetdBadge Color="ComponentColor.Success">Item 3</ANetdBadge>
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Direction",    "StackDirection",  "Horizontal",     "Flex direction of the stack"),
+        new("Gap",          "string",          "\"0\"",          "Gap between children (CSS value)"),
+        new("Wrap",         "bool",            "false",          "Whether children wrap to the next line"),
+        new("Align",        "string",          "\"stretch\"",    "Align-items CSS value"),
+        new("Justify",      "string",          "\"flex-start\"", "Justify-content CSS value"),
+        new("ChildContent", "RenderFragment?", "null",           "Content rendered inside the stack"),
+    };
+}

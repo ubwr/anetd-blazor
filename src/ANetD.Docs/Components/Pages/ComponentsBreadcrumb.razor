@@ -1,0 +1,49 @@
+@page "/docs/components/breadcrumb"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Breadcrumb — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Breadcrumb</ANetdText>
+<ANetdText As="p">Hierarchical navigation trail showing the current page location.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdBreadcrumb>
+    <ANetdBreadcrumbItem Href=""/"">Home</ANetdBreadcrumbItem>
+    <ANetdBreadcrumbItem Href=""/docs"">Docs</ANetdBreadcrumbItem>
+    <ANetdBreadcrumbItem Active=""true"">Breadcrumb</ANetdBreadcrumbItem>
+</ANetdBreadcrumb>")'>
+    <ANetdBreadcrumb>
+        <ANetdBreadcrumbItem Href="/">Home</ANetdBreadcrumbItem>
+        <ANetdBreadcrumbItem Href="/docs">Docs</ANetdBreadcrumbItem>
+        <ANetdBreadcrumbItem Active="true">Breadcrumb</ANetdBreadcrumbItem>
+    </ANetdBreadcrumb>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Href",         "string?",         "null",  "Navigation URL; renders as an anchor when provided"),
+        new("Active",       "bool",            "false", "Marks this item as the current/active crumb (not a link)"),
+        new("ChildContent", "RenderFragment?", "null",  "Label content of the breadcrumb item"),
+    };
+}

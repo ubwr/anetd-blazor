@@ -4,38 +4,73 @@
 <PageTitle>Table — ANetD Components</PageTitle>
 
 <ANetdText As="h1">Table</ANetdText>
-<ANetdText As="p">Displays structured data with sorting, pagination, and row interaction support.</ANetdText>
+<ANetdText As="p">Displays structured data with optional hover, striping, and custom row templates.</ANetdText>
 
 <ANetdText As="h2">Basic</ANetdText>
-<ANetdCard NoPadding="true">
-    <ChildContent>
-        <ANetdTable Items="_users" Hoverable="true">
-            <HeaderRow>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Status</th>
-            </HeaderRow>
-            <RowTemplate Context="user">
-                <tr>
-                    <td>
-                        <ANetdStack Direction="StackDirection.Horizontal" Gap="var(--anetd-primitive-space-2)">
-                            <ANetdAvatar Name="@user.Name" Size="ComponentSize.Sm" />
-                            <span>@user.Name</span>
-                        </ANetdStack>
-                    </td>
-                    <td>@user.Email</td>
-                    <td><ANetdTag Color="ComponentColor.Default">@user.Role</ANetdTag></td>
-                    <td>
-                        <ANetdBadge Color="@(user.Active ? ComponentColor.Success : ComponentColor.Default)">
-                            @(user.Active ? "Active" : "Inactive")
-                        </ANetdBadge>
-                    </td>
-                </tr>
-            </RowTemplate>
-        </ANetdTable>
-    </ChildContent>
-</ANetdCard>
+<DocsDemoBlock Code='@(@"<ANetdTable Items=""_users"" Hoverable=""true"">
+    <HeaderRow>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+    </HeaderRow>
+    <RowTemplate Context=""user"">
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.Email</td>
+            <td>@user.Role</td>
+            <td>
+                <ANetdBadge Color=""@(user.Active ? ComponentColor.Success : ComponentColor.Default)"">
+                    @(user.Active ? ""Active"" : ""Inactive"")
+                </ANetdBadge>
+            </td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>")'>
+    <ANetdTable Items="_users" Hoverable="true">
+        <HeaderRow>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+        </HeaderRow>
+        <RowTemplate Context="user">
+            <tr>
+                <td>
+                    <ANetdStack Direction="StackDirection.Horizontal" Gap="var(--anetd-primitive-space-2)">
+                        <ANetdAvatar Name="@user.Name" Size="ComponentSize.Sm" />
+                        <span>@user.Name</span>
+                    </ANetdStack>
+                </td>
+                <td>@user.Email</td>
+                <td><ANetdTag Color="ComponentColor.Default">@user.Role</ANetdTag></td>
+                <td>
+                    <ANetdBadge Color="@(user.Active ? ComponentColor.Success : ComponentColor.Default)">
+                        @(user.Active ? "Active" : "Inactive")
+                    </ANetdBadge>
+                </td>
+            </tr>
+        </RowTemplate>
+    </ANetdTable>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
 
 @code {
     record User(string Name, string Email, string Role, bool Active);
@@ -47,5 +82,17 @@
         new("Carol Williams", "carol@example.com",  "Designer",  false),
         new("David Brown",    "david@example.com",  "Developer", true),
         new("Eva Martinez",   "eva@example.com",    "Manager",   true),
+    };
+
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Items",       "IEnumerable<T>",   "-",      "Data collection to render"),
+        new("Hoverable",   "bool",             "false",  "Highlight row on mouse hover"),
+        new("Striped",     "bool",             "false",  "Alternate row background colors"),
+        new("Bordered",    "bool",             "true",   "Show cell borders"),
+        new("HeaderRow",   "RenderFragment?",  "null",   "Column header markup (th elements)"),
+        new("RowTemplate", "RenderFragment<T>?","null",  "Row markup per item"),
     };
 }

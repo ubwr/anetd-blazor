@@ -1,0 +1,53 @@
+@page "/docs/components/navbar"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Navbar — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Navbar</ANetdText>
+<ANetdText As="p">Top-level application navigation bar with brand, nav items, and actions.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdNavbar Sticky=""true"">
+    <Brand><a href=""/"">My App</a></Brand>
+    <ChildContent>
+        <ANetdNavItem Href=""/home"">Home</ANetdNavItem>
+        <ANetdNavItem Href=""/about"">About</ANetdNavItem>
+    </ChildContent>
+    <Actions>
+        <ANetdButton Variant=""ButtonVariant.Primary"" Size=""ComponentSize.Sm"">Sign In</ANetdButton>
+    </Actions>
+</ANetdNavbar>")'>
+    <ANetdAlert Variant="AlertVariant.Info" Title="Usage">
+        The Navbar is used at the application shell level. See DocsLayout.razor for a live example.
+    </ANetdAlert>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Brand",        "RenderFragment?", "null",  "Brand/logo slot rendered at the start of the navbar"),
+        new("ChildContent", "RenderFragment?", "null",  "Navigation items rendered in the center area"),
+        new("Actions",      "RenderFragment?", "null",  "Action elements rendered at the end of the navbar"),
+        new("Sticky",       "bool",            "false", "Fixes the navbar to the top of the viewport"),
+    };
+}

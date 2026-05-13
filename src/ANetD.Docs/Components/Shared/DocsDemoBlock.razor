@@ -1,0 +1,48 @@
+@namespace ANetD.Docs.Components.Shared
+
+<div class="docs-demo-block">
+    @if (ChildContent is not null)
+    {
+        <div class="docs-demo-block__preview">
+            @ChildContent
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(Code))
+    {
+        <div class="docs-demo-block__code">
+            <div class="docs-demo-block__code-header">
+                <span class="docs-demo-block__code-lang">razor</span>
+                <button type="button" class="docs-demo-block__copy" @onclick="CopyCode" title="Copy code">
+                    @if (_copied)
+                    {
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Copied</span>
+                    }
+                    else
+                    {
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                    }
+                </button>
+            </div>
+            <pre class="docs-demo-block__pre"><code>@Code</code></pre>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Code { get; set; }
+
+    private bool _copied;
+
+    private async Task CopyCode()
+    {
+        if (string.IsNullOrEmpty(Code)) return;
+        _copied = true;
+        StateHasChanged();
+        await Task.Delay(2000);
+        _copied = false;
+        StateHasChanged();
+    }
+}

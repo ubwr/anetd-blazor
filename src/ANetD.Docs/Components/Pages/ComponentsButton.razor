@@ -13,7 +13,7 @@
 <ANetdCard>
     <ChildContent>
         <ANetdStack Direction="StackDirection.Horizontal" Wrap="true" Gap="var(--anetd-primitive-space-2)">
-            <ANetdButton Variant="ButtonVariant.Primary" OnClick="@(() => Toast.ShowSuccess("Primary clicked"))">Primary</ANetdButton>
+            <ANetdButton Variant="ButtonVariant.Primary" OnClick="@HandlePrimaryClick">Primary</ANetdButton>
             <ANetdButton Variant="ButtonVariant.Secondary">Secondary</ANetdButton>
             <ANetdButton Variant="ButtonVariant.Ghost">Ghost</ANetdButton>
             <ANetdButton Variant="ButtonVariant.Danger">Danger</ANetdButton>
@@ -43,6 +43,15 @@
         </ANetdStack>
     </ChildContent>
 </ANetdCard>
+
+<ANetdText As="h2">Code</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdButton Variant=""ButtonVariant.Primary"">Primary</ANetdButton>
+<ANetdButton Variant=""ButtonVariant.Secondary"">Secondary</ANetdButton>
+<ANetdButton Variant=""ButtonVariant.Ghost"">Ghost</ANetdButton>
+<ANetdButton Variant=""ButtonVariant.Danger"">Danger</ANetdButton>
+<ANetdButton Variant=""ButtonVariant.Link"">Link</ANetdButton>
+<ANetdButton Variant=""ButtonVariant.Primary"" Loading=""true"">Loading</ANetdButton>
+<ANetdButton Variant=""ButtonVariant.Primary"" Disabled=""true"">Disabled</ANetdButton>")' />
 
 <ANetdText As="h2">API Reference</ANetdText>
 <ANetdTable Items="@_params" Hoverable="true" Bordered="false">
@@ -77,4 +86,6 @@
         new("IconStart",  "RenderFragment?", "null",     "Icon rendered before label"),
         new("IconEnd",    "RenderFragment?", "null",     "Icon rendered after label"),
     };
+
+    private void HandlePrimaryClick() => Toast.ShowSuccess("Primary clicked");
 }

@@ -10,10 +10,46 @@
 <ANetdCard>
     <ChildContent>
         <ANetdStack Gap="var(--anetd-primitive-space-2)">
-            <ANetdAlert Variant="AlertVariant.Info"    Title="Info"    ChildContent="@((__builder) => { __builder.AddContent(0, "This is an informational message."); })" />
-            <ANetdAlert Variant="AlertVariant.Success" Title="Success" ChildContent="@((__builder) => { __builder.AddContent(0, "Your changes have been saved."); })" />
-            <ANetdAlert Variant="AlertVariant.Warning" Title="Warning" ChildContent="@((__builder) => { __builder.AddContent(0, "This action may have unintended consequences."); })" />
-            <ANetdAlert Variant="AlertVariant.Danger"  Title="Error"   ChildContent="@((__builder) => { __builder.AddContent(0, "Something went wrong. Please try again."); })" />
+            <ANetdAlert Variant="AlertVariant.Info" Title="Info">This is an informational message.</ANetdAlert>
+            <ANetdAlert Variant="AlertVariant.Success" Title="Success">Your changes have been saved.</ANetdAlert>
+            <ANetdAlert Variant="AlertVariant.Warning" Title="Warning">This action may have unintended consequences.</ANetdAlert>
+            <ANetdAlert Variant="AlertVariant.Danger" Title="Error">Something went wrong. Please try again.</ANetdAlert>
         </ANetdStack>
     </ChildContent>
 </ANetdCard>
+
+<ANetdText As="h2">Code</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdAlert Variant=""AlertVariant.Info"" Title=""Info"">This is an informational message.</ANetdAlert>
+<ANetdAlert Variant=""AlertVariant.Success"" Title=""Success"">Your changes have been saved.</ANetdAlert>
+<ANetdAlert Variant=""AlertVariant.Warning"" Title=""Warning"">This action may have unintended consequences.</ANetdAlert>
+<ANetdAlert Variant=""AlertVariant.Danger"" Title=""Error"">Something went wrong. Please try again.</ANetdAlert>")' />
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Variant",      "AlertVariant",   "Info",  "Visual style and icon"),
+        new("Title",        "string?",        "null",  "Bold heading text"),
+        new("Dismissible",  "bool",           "false", "Shows a close button"),
+        new("ChildContent", "RenderFragment?","null",  "Body content"),
+    };
+}

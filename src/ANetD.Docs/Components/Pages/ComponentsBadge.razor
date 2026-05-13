@@ -1,0 +1,55 @@
+@page "/docs/components/badge"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Badge — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Badge</ANetdText>
+<ANetdText As="p">Small inline label for statuses, counts, or categories.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Direction=""StackDirection.Horizontal"" Wrap=""true"" Gap=""var(--anetd-primitive-space-2)"">
+    <ANetdBadge Color=""ComponentColor.Primary"">Primary</ANetdBadge>
+    <ANetdBadge Color=""ComponentColor.Secondary"">Secondary</ANetdBadge>
+    <ANetdBadge Color=""ComponentColor.Success"">Success</ANetdBadge>
+    <ANetdBadge Color=""ComponentColor.Warning"">Warning</ANetdBadge>
+    <ANetdBadge Color=""ComponentColor.Danger"">Danger</ANetdBadge>
+    <ANetdBadge Color=""ComponentColor.Info"">Info</ANetdBadge>
+</ANetdStack>")'>
+    <ANetdStack Direction="StackDirection.Horizontal" Wrap="true" Gap="var(--anetd-primitive-space-2)">
+        <ANetdBadge Color="ComponentColor.Primary">Primary</ANetdBadge>
+        <ANetdBadge Color="ComponentColor.Secondary">Secondary</ANetdBadge>
+        <ANetdBadge Color="ComponentColor.Success">Success</ANetdBadge>
+        <ANetdBadge Color="ComponentColor.Warning">Warning</ANetdBadge>
+        <ANetdBadge Color="ComponentColor.Danger">Danger</ANetdBadge>
+        <ANetdBadge Color="ComponentColor.Info">Info</ANetdBadge>
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Color",        "ComponentColor",  "Secondary", "Color variant of the badge"),
+        new("Pill",         "bool",            "false",     "Renders the badge with fully rounded corners"),
+        new("ChildContent", "RenderFragment?", "null",      "Text or content displayed inside the badge"),
+    };
+}

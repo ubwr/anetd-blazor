@@ -1,0 +1,56 @@
+@page "/docs/components/toast"
+@namespace ANetD.Docs.Components.Pages
+@inject IToastService Toast
+
+<PageTitle>Toast — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Toast</ANetdText>
+<ANetdText As="p">Brief notification messages that appear and auto-dismiss.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Direction=""StackDirection.Horizontal"" Wrap=""true"" Gap=""var(--anetd-primitive-space-2)"">
+    <ANetdButton Variant=""ButtonVariant.Primary"" OnClick=""@ShowSuccess"">Success Toast</ANetdButton>
+    <ANetdButton Variant=""ButtonVariant.Secondary"" OnClick=""@ShowInfo"">Info Toast</ANetdButton>
+    <ANetdButton Variant=""ButtonVariant.Danger"" OnClick=""@ShowError"">Error Toast</ANetdButton>
+</ANetdStack>")'>
+    <ANetdStack Direction="StackDirection.Horizontal" Wrap="true" Gap="var(--anetd-primitive-space-2)">
+        <ANetdButton Variant="ButtonVariant.Primary" OnClick="@ShowSuccess">Success Toast</ANetdButton>
+        <ANetdButton Variant="ButtonVariant.Secondary" OnClick="@ShowInfo">Info Toast</ANetdButton>
+        <ANetdButton Variant="ButtonVariant.Danger" OnClick="@ShowError">Error Toast</ANetdButton>
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Message",     "string",       "\"\"",  "Primary message text of the toast"),
+        new("Title",       "string?",      "null",  "Optional bold title shown above the message"),
+        new("Variant",     "ToastVariant", "Info",  "Visual style variant controlling color and icon"),
+        new("Duration",    "int",          "4000",  "Auto-dismiss delay in milliseconds"),
+        new("Dismissible", "bool",         "true",  "Whether a close button is shown"),
+    };
+
+    private void ShowSuccess() => Toast.ShowSuccess("Saved successfully!");
+    private void ShowInfo() => Toast.ShowInfo("Update available.");
+    private void ShowError() => Toast.ShowError("Something went wrong.");
+}

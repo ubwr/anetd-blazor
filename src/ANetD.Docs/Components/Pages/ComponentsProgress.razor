@@ -7,14 +7,48 @@
 <ANetdText As="p">Shows completion progress of a task or operation.</ANetdText>
 
 <ANetdText As="h2">Variants</ANetdText>
-<ANetdCard>
-    <ChildContent>
-        <ANetdStack Gap="var(--anetd-primitive-space-3)">
-            <ANetdProgressBar Value="65" Label="Default progress" />
-            <ANetdProgressBar Value="40" Color="ComponentColor.Success" Label="Success" />
-            <ANetdProgressBar Value="80" Color="ComponentColor.Warning" Label="Warning" />
-            <ANetdProgressBar Value="25" Color="ComponentColor.Danger" Label="Danger" />
-            <ANetdProgressBar Indeterminate="true" Label="Loading..." />
-        </ANetdStack>
-    </ChildContent>
-</ANetdCard>
+<DocsDemoBlock Code='@(@"<ANetdProgressBar Value=""65"" Label=""Default progress"" />
+<ANetdProgressBar Value=""40"" Color=""ComponentColor.Success"" Label=""Success"" />
+<ANetdProgressBar Value=""80"" Color=""ComponentColor.Warning"" Label=""Warning"" />
+<ANetdProgressBar Value=""25"" Color=""ComponentColor.Danger"" Label=""Danger"" />
+<ANetdProgressBar Indeterminate=""true"" Label=""Loading..."" />")'>
+    <ANetdStack Gap="var(--anetd-primitive-space-3)">
+        <ANetdProgressBar Value="65" Label="Default progress" />
+        <ANetdProgressBar Value="40" Color="ComponentColor.Success" Label="Success" />
+        <ANetdProgressBar Value="80" Color="ComponentColor.Warning" Label="Warning" />
+        <ANetdProgressBar Value="25" Color="ComponentColor.Danger" Label="Danger" />
+        <ANetdProgressBar Indeterminate="true" Label="Loading..." />
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Value",           "double",         "0",      "Current progress value (0–100)"),
+        new("Color",           "ComponentColor", "Primary","Fill color variant"),
+        new("Label",           "string?",        "null",   "Accessible label for screen readers"),
+        new("Indeterminate",   "bool",           "false",  "Animated loading state, no defined value"),
+        new("Size",            "ComponentSize",  "Md",     "Track height variant"),
+        new("ShowLabel",       "bool",           "false",  "Display percentage text above bar"),
+    };
+}

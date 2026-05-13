@@ -1,0 +1,51 @@
+@page "/docs/components/toggle"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Toggle — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Toggle</ANetdText>
+<ANetdText As="p">On/off switch control.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Gap=""var(--anetd-primitive-space-2)"">
+    <ANetdToggle Label=""Enable notifications"" @bind-Value=""_on"" />
+    <ANetdToggle Label=""Disabled off"" Disabled=""true"" />
+    <ANetdToggle Label=""Disabled on"" Value=""true"" Disabled=""true"" />
+</ANetdStack>")'>
+    <ANetdStack Gap="var(--anetd-primitive-space-2)">
+        <ANetdToggle Label="Enable notifications" @bind-Value="_on" />
+        <ANetdToggle Label="Disabled off" Disabled="true" />
+        <ANetdToggle Label="Disabled on" Value="true" Disabled="true" />
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    private bool _on = false;
+
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Value",    "bool",    "false", "Bound on/off state"),
+        new("Label",    "string?", "null",  "Label displayed next to the toggle"),
+        new("Disabled", "bool",    "false", "Disables the toggle"),
+    };
+}

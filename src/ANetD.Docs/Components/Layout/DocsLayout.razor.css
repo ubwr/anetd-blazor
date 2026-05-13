@@ -1,4 +1,4 @@
-.docs-shell { display: flex; flex-direction: column; min-height: 100vh; }
+.docs-shell { display: flex; flex-direction: column; min-height: 100vh; background-color: var(--anetd-color-bg-base); }
 .docs-body { display: flex; flex: 1; height: calc(100vh - var(--anetd-navbar-height)); overflow: hidden; }
 .docs-main { flex: 1; overflow-y: auto; }
 .docs-content { max-width: 56rem; margin: 0 auto; padding: var(--anetd-primitive-space-8) var(--anetd-primitive-space-6); }

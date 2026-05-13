@@ -1,0 +1,43 @@
+@page "/docs/components/pagination"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Pagination — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Pagination</ANetdText>
+<ANetdText As="p">Page navigation control for paginated data sets.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdPagination @bind-CurrentPage=""_page"" TotalPages=""10"" />")'>
+    <ANetdPagination @bind-CurrentPage="_page" TotalPages="10" />
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    private int _page = 1;
+
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("CurrentPage",        "int",               "1", "The currently active page number; supports @bind-CurrentPage"),
+        new("TotalPages",         "int",               "1", "Total number of pages"),
+        new("CurrentPageChanged", "EventCallback<int>","-", "Fired when the user navigates to a page"),
+    };
+}

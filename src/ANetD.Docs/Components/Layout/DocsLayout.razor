@@ -1,10 +1,9 @@
 @namespace ANetD.Docs.Components.Layout
 @inherits LayoutComponentBase
 @inject ANetD.Services.ThemeService ThemeService
-@inject IANetDJSInterop JSInterop
 @implements IDisposable
 
-<div class="docs-shell">
+<div class="docs-shell" data-theme="@ThemeService.CurrentTheme">
     <ANetdNavbar Sticky="true">
         <Brand>
             <a href="/" class="docs-brand">
@@ -96,19 +95,20 @@
     protected override void OnInitialized()
     {
         ThemeService.OnThemeChanged += StateHasChanged;
+        Navigation.LocationChanged += OnLocationChanged;
     }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e) =>
+        StateHasChanged();
 
     private bool IsActive(string path) =>
         Navigation.Uri.EndsWith(path, StringComparison.OrdinalIgnoreCase);
 
-    private async Task ToggleTheme()
-    {
-        ThemeService.ToggleTheme();
-        await JSInterop.SetThemeAsync(ThemeService.CurrentTheme);
-    }
+    private void ToggleTheme() => ThemeService.ToggleTheme();
 
     public void Dispose()
     {
         ThemeService.OnThemeChanged -= StateHasChanged;
+        Navigation.LocationChanged -= OnLocationChanged;
     }
 }

@@ -1,0 +1,51 @@
+@page "/docs/components/stat"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Stat — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Stat</ANetdText>
+<ANetdText As="p">Metric display card with a label, value, and optional trend indicator.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Direction=""StackDirection.Horizontal"" Wrap=""true"" Gap=""var(--anetd-primitive-space-4)"">
+    <ANetdStat Label=""Total Users"" Value=""12,492"" Trend=""+8.2%"" TrendPositive=""true"" />
+    <ANetdStat Label=""Revenue"" Value=""$48,320"" Trend=""-1.4%"" TrendPositive=""false"" />
+    <ANetdStat Label=""Active Sessions"" Value=""342"" />
+</ANetdStack>")'>
+    <ANetdStack Direction="StackDirection.Horizontal" Wrap="true" Gap="var(--anetd-primitive-space-4)">
+        <ANetdStat Label="Total Users" Value="12,492" Trend="+8.2%" TrendPositive="true" />
+        <ANetdStat Label="Revenue" Value="$48,320" Trend="-1.4%" TrendPositive="false" />
+        <ANetdStat Label="Active Sessions" Value="342" />
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Label",   "string",          "\"\"", "Descriptive label shown below the value"),
+        new("Value",   "string",          "\"\"", "Primary metric value displayed prominently"),
+        new("Trend",   "string?",         "null", "Trend text (e.g. \"+8.2%\") shown next to the value"),
+        new("TrendPositive", "bool",           "false", "When true the trend is styled as positive (green up arrow), false as negative (red down arrow)"),
+        new("Icon",    "RenderFragment?", "null", "Optional icon rendered alongside the stat"),
+    };
+}

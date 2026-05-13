@@ -1,0 +1,52 @@
+@page "/docs/components/avatar"
+@namespace ANetD.Docs.Components.Pages
+
+<PageTitle>Avatar — ANetD Components</PageTitle>
+
+<ANetdText As="h1">Avatar</ANetdText>
+<ANetdText As="p">User profile picture or initials placeholder.</ANetdText>
+
+<ANetdText As="h2">Example</ANetdText>
+<DocsDemoBlock Code='@(@"<ANetdStack Direction=""StackDirection.Horizontal"" Gap=""var(--anetd-primitive-space-3)"">
+    <ANetdAvatar Name=""Jane Doe"" />
+    <ANetdAvatar Name=""Alice Brown"" Size=""ComponentSize.Sm"" />
+    <ANetdAvatar Name=""XY"" Size=""ComponentSize.Lg"" />
+</ANetdStack>")'>
+    <ANetdStack Direction="StackDirection.Horizontal" Gap="var(--anetd-primitive-space-3)">
+        <ANetdAvatar Name="Jane Doe" />
+        <ANetdAvatar Name="Alice Brown" Size="ComponentSize.Sm" />
+        <ANetdAvatar Name="XY" Size="ComponentSize.Lg" />
+    </ANetdStack>
+</DocsDemoBlock>
+
+<ANetdText As="h2">API Reference</ANetdText>
+<ANetdTable Items="@_params" Hoverable="true" Bordered="false">
+    <HeaderRow>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </HeaderRow>
+    <RowTemplate Context="p">
+        <tr>
+            <td><code>@p.Name</code></td>
+            <td><code>@p.Type</code></td>
+            <td><code>@p.Default</code></td>
+            <td>@p.Description</td>
+        </tr>
+    </RowTemplate>
+</ANetdTable>
+
+@code {
+    record ParamDoc(string Name, string Type, string Default, string Description);
+
+    private readonly List<ParamDoc> _params = new()
+    {
+        new("Src",   "string?",       "null",   "Image URL; renders an img element when provided"),
+        new("Name",  "string?",       "null",   "Full name; initials are auto-derived from the first letter of each word"),
+        new("Size",  "ComponentSize", "Md",     "Controls the diameter of the avatar"),
+        new("Shape", "AvatarShape",   "Circle", "Circle or Square"),
+        new("Color", "string?",       "null",   "Custom CSS background color for the initials fallback"),
+        new("Icon",  "RenderFragment?","null",  "Icon slot rendered when no Src or Name is provided"),
+    };
+}
