@@ -58,11 +58,13 @@
 
     private readonly List<ParamDoc> _params = new()
     {
-        new("IsOpen",       "bool",             "false",  "Controls visibility; supports two-way binding"),
-        new("Title",        "string?",          "null",   "Modal header title text"),
-        new("Size",         "ComponentSize",    "Md",     "Width preset: Sm, Md, Lg, Xl"),
-        new("Dismissible",  "bool",             "true",   "Close on backdrop click or Escape key"),
-        new("ChildContent", "RenderFragment?",  "null",   "Modal body content"),
-        new("Footer",       "RenderFragment?",  "null",   "Footer slot, typically holds action buttons"),
+        new("IsOpen",          "bool",            "false", "Controls visibility; supports two-way binding"),
+        new("Title",           "string",          "\"\"",  "Modal header title text"),
+        new("Size",            "ComponentSize",   "Md",    "Width preset: Sm, Md, Lg"),
+        new("CloseOnBackdrop", "bool",            "true",  "Close the modal when the backdrop is clicked"),
+        new("ShowCloseButton", "bool",            "true",  "Show the × close button in the header"),
+        new("ChildContent",    "RenderFragment?", "null",  "Modal body content"),
+        new("Footer",          "RenderFragment?", "null",  "Footer slot, typically holds action buttons"),
+        new("OnClose",         "EventCallback",   "-",     "Callback fired when the modal is closed"),
     };
 }

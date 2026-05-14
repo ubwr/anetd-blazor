@@ -42,11 +42,11 @@
 
     private readonly List<ParamDoc> _params = new()
     {
-        new("Direction",    "StackDirection",  "Horizontal",     "Flex direction of the stack"),
-        new("Gap",          "string",          "\"0\"",          "Gap between children (CSS value)"),
-        new("Wrap",         "bool",            "false",          "Whether children wrap to the next line"),
-        new("Align",        "string",          "\"stretch\"",    "Align-items CSS value"),
-        new("Justify",      "string",          "\"flex-start\"", "Justify-content CSS value"),
-        new("ChildContent", "RenderFragment?", "null",           "Content rendered inside the stack"),
+        new("Direction",      "StackDirection",  "Vertical",  "Flex direction of the stack"),
+        new("Gap",            "string?",         "null",      "CSS gap value between children (e.g. \"var(--anetd-primitive-space-2)\")"),
+        new("Wrap",           "bool",            "false",     "Whether children wrap to the next line"),
+        new("AlignItems",     "string?",         "null",      "CSS align-items value (overrides class default)"),
+        new("JustifyContent", "string?",         "null",      "CSS justify-content value"),
+        new("ChildContent",   "RenderFragment?", "null",      "Content rendered inside the stack"),
     };
 }

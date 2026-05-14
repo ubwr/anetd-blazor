@@ -44,9 +44,9 @@
 
     private readonly List<ParamDoc> _params = new()
     {
-        new("Width",   "string",  "\"100%\"", "Width of the skeleton block (CSS value)"),
-        new("Height",  "string",  "\"1rem\"", "Height of the skeleton block (CSS value)"),
-        new("Radius",  "string?", "null",     "Border radius override (CSS value)"),
-        new("Animate", "bool",    "true",     "Whether to show the shimmer animation"),
+        new("Width",  "string?", "null",  "Width of the skeleton block (CSS value); defaults to 100% via CSS"),
+        new("Height", "string?", "null",  "Height of the skeleton block (CSS value); defaults to 1rem via CSS"),
+        new("Radius", "string?", "null",  "Border radius override (CSS value)"),
+        new("Circle", "bool",    "false", "Renders as a circle (sets border-radius to 50%)"),
     };
 }

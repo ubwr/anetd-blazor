@@ -42,10 +42,11 @@
 
     private readonly List<ParamDoc> _params = new()
     {
-        new("Label",   "string",          "\"\"", "Descriptive label shown below the value"),
-        new("Value",   "string",          "\"\"", "Primary metric value displayed prominently"),
-        new("Trend",   "string?",         "null", "Trend text (e.g. \"+8.2%\") shown next to the value"),
-        new("TrendPositive", "bool",           "false", "When true the trend is styled as positive (green up arrow), false as negative (red down arrow)"),
-        new("Icon",    "RenderFragment?", "null", "Optional icon rendered alongside the stat"),
+        new("Label",         "string?",         "null",  "Descriptive label shown above the value"),
+        new("Value",         "string?",         "null",  "Primary metric value displayed prominently"),
+        new("Trend",         "string?",         "null",  "Trend text (e.g. \"+8.2%\") shown below the value"),
+        new("TrendPositive", "bool",            "false", "Styles the trend as positive (green) when true, negative (red) when false"),
+        new("Description",   "string?",         "null",  "Secondary description text shown below the trend"),
+        new("Icon",          "RenderFragment?", "null",  "Optional icon rendered alongside the value"),
     };
 }

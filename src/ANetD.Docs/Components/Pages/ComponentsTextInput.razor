@@ -44,14 +44,17 @@
 
     private readonly List<ParamDoc> _params = new()
     {
-        new("Value",       "string",        "\"\"",     "Bound text value"),
+        new("Value",       "string?",       "null",     "Bound text value"),
         new("Label",       "string?",       "null",     "Label displayed above the input"),
         new("Placeholder", "string?",       "null",     "Placeholder text shown when empty"),
+        new("Type",        "string",        "\"text\"", "HTML input type attribute"),
         new("Disabled",    "bool",          "false",    "Disables the input"),
         new("ReadOnly",    "bool",          "false",    "Makes the input read-only"),
+        new("Required",    "bool",          "false",    "Marks the input as required"),
         new("Error",       "string?",       "null",     "Validation error message shown below the input"),
+        new("HelpText",    "string?",       "null",     "Helper text shown below the input when there is no error"),
         new("Size",        "ComponentSize", "Md",       "Controls height and font size"),
-        new("Type",        "string",        "\"text\"", "HTML input type attribute"),
-        new("FullWidth",   "bool",          "false",    "Stretches input to fill its container"),
+        new("Prefix",      "string?",       "null",     "Static text prefix rendered inside the input"),
+        new("Suffix",      "string?",       "null",     "Static text suffix rendered inside the input"),
     };
 }

@@ -46,8 +46,10 @@
 
     private readonly List<ParamDoc> _params = new()
     {
-        new("OnRemove",     "EventCallback?",  "null",      "If set, shows a remove button; fired when it is clicked"),
-        new("Color",        "ComponentColor",  "Secondary", "Color variant of the tag"),
-        new("ChildContent", "RenderFragment?", "null",      "Label content displayed inside the tag"),
+        new("ChildContent", "RenderFragment?", "null",    "Label content displayed inside the tag"),
+        new("Color",        "ComponentColor",  "Default", "Color variant of the tag"),
+        new("Removable",    "bool",            "false",   "Shows a remove × button inside the tag"),
+        new("OnRemove",     "EventCallback",   "-",       "Fired when the remove button is clicked"),
+        new("Icon",         "RenderFragment?", "null",    "Optional icon rendered before the label"),
     };
 }

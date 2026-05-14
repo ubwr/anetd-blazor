@@ -46,12 +46,13 @@
 
     private readonly List<ParamDoc> _params = new()
     {
-        new("Value",        "string",          "\"\"",  "Bound selected value"),
+        new("Value",        "TValue?",         "null",  "Bound selected value; generic — works with string, int, enum, etc."),
         new("Label",        "string?",         "null",  "Label displayed above the select"),
+        new("Placeholder",  "string?",         "null",  "Disabled placeholder option shown at the top"),
         new("Disabled",     "bool",            "false", "Disables the select"),
-        new("Error",        "string?",         "null",  "Validation error message shown below the select"),
+        new("Required",     "bool",            "false", "Marks the select as required"),
         new("Size",         "ComponentSize",   "Md",    "Controls height and font size"),
-        new("FullWidth",    "bool",            "false", "Stretches select to fill its container"),
+        new("HelpText",     "string?",         "null",  "Helper text shown below the select"),
         new("ChildContent", "RenderFragment?", "null",  "Option elements rendered inside the select"),
     };
 }

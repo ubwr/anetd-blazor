@@ -5,6 +5,7 @@
 @code {
     [Parameter] public string? Width { get; set; }
     [Parameter] public string? Height { get; set; }
+    [Parameter] public string? Radius { get; set; }
     [Parameter] public bool Circle { get; set; }
     [Parameter] public string? Class { get; set; }
     [Parameter] public string? Style { get; set; }
@@ -20,6 +21,7 @@
             var sb = new ANetD.Utilities.StyleBuilder();
             if (!string.IsNullOrEmpty(Width)) sb.Add("width", Width);
             if (!string.IsNullOrEmpty(Height)) sb.Add("height", Height);
+            if (!string.IsNullOrEmpty(Radius)) sb.Add("border-radius", Radius);
             var custom = sb.Build();
             return string.IsNullOrEmpty(Style) ? custom : (custom == null ? Style : $"{custom};{Style}");
         }

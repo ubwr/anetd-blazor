@@ -43,7 +43,7 @@
     @if (HasError && ShowValidationMessage)
     {
         <div id="@(_inputId + "-error")" class="anetd-field-error" role="alert">
-            @(EditContext?.GetValidationMessages(FieldIdentifier).FirstOrDefault() ?? string.Empty)
+            @(Error ?? EditContext?.GetValidationMessages(FieldIdentifier).FirstOrDefault() ?? string.Empty)
         </div>
     }
     @if (!string.IsNullOrEmpty(HelpText) && !HasError)
@@ -68,9 +68,11 @@
     [Parameter] public bool Required { get; set; }
     [Parameter] public bool ShowValidationMessage { get; set; } = true;
     [Parameter] public string? HelpText { get; set; }
+    [Parameter] public string? Error { get; set; }
     [Parameter] public string? Class { get; set; }
 
-    private bool HasError => EditContext is not null && EditContext.GetValidationMessages(FieldIdentifier).Any();
+    private bool HasError => !string.IsNullOrEmpty(Error) ||
+        (EditContext is not null && EditContext.GetValidationMessages(FieldIdentifier).Any());
 
     private string WrapperClass => new ANetD.Utilities.CssBuilder()
         .Add("anetd-field")

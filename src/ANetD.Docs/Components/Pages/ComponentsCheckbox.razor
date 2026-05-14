@@ -44,9 +44,10 @@
 
     private readonly List<ParamDoc> _params = new()
     {
-        new("Value",    "bool",    "false", "Bound checked state"),
-        new("Label",    "string?", "null",  "Label displayed next to the checkbox"),
-        new("Disabled", "bool",    "false", "Disables the checkbox"),
-        new("Error",    "string?", "null",  "Validation error message shown below the checkbox"),
+        new("Value",        "bool",            "false", "Bound checked state"),
+        new("Label",        "string?",         "null",  "Label displayed next to the checkbox"),
+        new("Disabled",     "bool",            "false", "Disables the checkbox"),
+        new("Required",     "bool",            "false", "Marks the checkbox as required"),
+        new("ChildContent", "RenderFragment?", "null",  "Rich label content; used instead of Label when set"),
     };
 }

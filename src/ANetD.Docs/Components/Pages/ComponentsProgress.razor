@@ -44,11 +44,11 @@
 
     private readonly List<ParamDoc> _params = new()
     {
-        new("Value",           "double",         "0",      "Current progress value (0–100)"),
-        new("Color",           "ComponentColor", "Primary","Fill color variant"),
-        new("Label",           "string?",        "null",   "Accessible label for screen readers"),
-        new("Indeterminate",   "bool",           "false",  "Animated loading state, no defined value"),
-        new("Size",            "ComponentSize",  "Md",     "Track height variant"),
-        new("ShowLabel",       "bool",           "false",  "Display percentage text above bar"),
+        new("Value",         "double",         "0",       "Current progress value"),
+        new("Max",           "double",         "100",     "Maximum value (denominator for percentage calculation)"),
+        new("Color",         "ComponentColor", "Primary", "Fill color variant"),
+        new("Label",         "string?",        "null",    "Accessible label for screen readers"),
+        new("Indeterminate", "bool",           "false",   "Animated loading state with no defined value"),
+        new("Size",          "ComponentSize",  "Md",      "Track height variant"),
     };
 }

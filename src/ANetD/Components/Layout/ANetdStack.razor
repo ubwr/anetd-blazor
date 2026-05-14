@@ -1,13 +1,13 @@
 @namespace ANetD.Components.Layout
 
-<div class="@CssClass" style="@Style" @attributes="AdditionalAttributes">
+<div class="@CssClass" style="@ComputedStyle" @attributes="AdditionalAttributes">
     @ChildContent
 </div>
 
 @code {
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter] public StackDirection Direction { get; set; } = StackDirection.Vertical;
-    [Parameter] public string Gap { get; set; } = "var(--anetd-primitive-space-3)";
+    [Parameter] public string? Gap { get; set; }
     [Parameter] public string? AlignItems { get; set; }
     [Parameter] public string? JustifyContent { get; set; }
     [Parameter] public bool Wrap { get; set; }
@@ -21,4 +21,17 @@
         .AddIf("anetd-stack--wrap", Wrap)
         .Add(Class)
         .Build();
+
+    private string? ComputedStyle
+    {
+        get
+        {
+            var parts = new List<string>();
+            if (!string.IsNullOrEmpty(Gap)) parts.Add($"gap:{Gap}");
+            if (!string.IsNullOrEmpty(AlignItems)) parts.Add($"align-items:{AlignItems}");
+            if (!string.IsNullOrEmpty(JustifyContent)) parts.Add($"justify-content:{JustifyContent}");
+            if (!string.IsNullOrEmpty(Style)) parts.Add(Style.TrimEnd(';'));
+            return parts.Count > 0 ? string.Join(";", parts) : null;
+        }
+    }
 }
